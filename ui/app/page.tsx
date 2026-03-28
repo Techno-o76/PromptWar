@@ -176,6 +176,7 @@ export default function SafetyGuardianHub() {
                   <textarea
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
+                    aria-label="Incident Report Input"
                     placeholder="Enter raw incident report (e.g. Needs painkillers immediately. Allergy: ibuprofen. Loc: Sector 7)"
                     className="w-full h-24 bg-white/80 border border-[#29664c]/10 rounded-xl p-4 text-sm focus:outline-none focus:border-[#29664c]/50 resize-none placeholder-[#5a5c58]/60"
                   />
