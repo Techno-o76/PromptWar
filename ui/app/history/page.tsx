@@ -1,6 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { Shield, Database, HeartHandshake, History, LibraryBig, Siren } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { name: 'Guardian Hub', icon: Shield, active: false, href: '/' },
+  { name: 'Data Ingestion', icon: Database, active: false, href: '/data-ingestion' },
+  { name: 'Support Flow', icon: HeartHandshake, active: false, href: '/support-flow' },
+  { name: 'History', icon: History, active: true, href: '/history' },
+  { name: 'Resources', icon: LibraryBig, active: false, href: '/resources' },
+];
 
 export default function HistoryLog() {
   return (
@@ -8,64 +17,42 @@ export default function HistoryLog() {
       
 <div className="flex min-h-screen">
 
-<aside className="hidden md:flex flex-col h-screen w-72 bg-surface dark:bg-stone-900 rounded-r-xl shadow-[0_20px_40px_rgba(45,47,44,0.06)] py-8 gap-2 sticky top-0">
-<div className="px-8 mb-8">
-<div className="flex items-center gap-3">
-<div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
-<span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
-</div>
-<div>
-<h2 className="text-lg font-bold text-on-background leading-tight">Safety Guardian</h2>
-<p className="text-xs text-on-surface-variant">Community Support</p>
-</div>
-</div>
-</div>
-<nav className="flex-1 space-y-1">
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/">
-<span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
-<span className="material-symbols-outlined" data-icon="database">database</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
-<span className="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
-</Link>
-<Link aria-label="Navigation Link" className="bg-primary text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-300 shadow-md" href="/history">
-<span className="material-symbols-outlined" data-icon="history" >history</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/resources">
-<span className="material-symbols-outlined" data-icon="library_books">library_books</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Resources</span>
-</Link>
-</nav>
-<div className="mt-auto px-4 space-y-1">
-<a aria-label="Link" className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
-<span className="material-symbols-outlined" data-icon="help">help</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Help Center</span>
-</a>
-<a aria-label="Link" className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
-<span className="material-symbols-outlined" data-icon="logout">logout</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Logout</span>
-</a>
-<div className="mt-6 p-4 rounded-3xl bg-secondary-container text-on-secondary-container">
-<p className="text-xs font-bold uppercase tracking-widest mb-2">Ready to Help</p>
-<button aria-label="Action" className="w-full py-3 bg-white text-on-surface rounded-full text-sm font-bold shadow-sm hover:scale-105 duration-200">
-                        Safety Assistance
-                    </button>
-</div>
-</div>
+<aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] z-40 border-r border-[#e8e9e3] shadow-[0_20px_40px_rgba(45,47,44,0.06)]">
+  <div className="px-8 mb-10">
+    <h1 className="text-xl font-bold text-[#29664c] tracking-tight">NEXUS Bridge</h1>
+    <p className="text-xs text-[#5a5c58] opacity-70 mt-1">Societal Benefit Intel</p>
+  </div>
+  
+  <nav className="flex flex-col gap-2">
+    {NAV_ITEMS.map((item) => (
+      <Link aria-label="Navigation Link" 
+        key={item.name} 
+        href={item.href} 
+        className={item.active 
+          ? "bg-[#b9f9d6] text-[#29664c] rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-medium transition-all duration-300"
+          : "text-[#2d2f2c] opacity-70 mx-4 px-6 py-3 flex items-center gap-3 font-medium hover:bg-[#e8e9e3] rounded-full transition-all"
+        }
+      >
+        <item.icon className={`w-5 h-5 ${item.active ? 'fill-[#29664c]/20' : ''}`} />
+        {item.name}
+      </Link>
+    ))}
+  </nav>
+  
+  <div className="mt-auto px-8">
+    <button aria-label="Action" className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
+      <Siren className="w-5 h-5" />
+      Safety Assistance
+    </button>
+  </div>
 </aside>
 
 <main className="flex-1 flex flex-col min-w-0">
 
-<header className="bg-surface/80 backdrop-blur-md sticky top-0 z-10 flex justify-between items-center w-full px-8 py-4">
+<header className="bg-[#f7f7f2]/80 backdrop-blur-md sticky top-0 z-10 flex justify-between items-center w-full px-8 py-4 border-b border-[#e8e9e3]">
 <div className="flex items-center gap-2">
-<span className="text-xl font-extrabold text-primary tracking-tight font-headline">Safety Guardian Hub</span>
-<span className="mx-3 h-4 w-px bg-outline-variant/30"></span>
+<span className="text-xl font-extrabold text-[#29664c] tracking-tight font-headline">Safety Guardian Hub</span>
+<span className="mx-3 h-4 w-px bg-[#e8e9e3]"></span>
 <span className="text-sm font-medium text-on-surface-variant">History Dashboard</span>
 </div>
 <div className="flex items-center gap-4">
@@ -90,8 +77,8 @@ export default function HistoryLog() {
 
 <section className="flex flex-col md:flex-row md:items-end justify-between gap-6">
 <div>
-<h1 className="text-4xl font-extrabold tracking-tight text-on-surface font-headline mb-2">History &amp; Activity</h1>
-<p className="text-on-surface-variant text-lg max-w-2xl">
+<h1 className="text-4xl md:text-5xl font-extrabold text-[#2d2f2c] tracking-tight mb-4">History &amp; Activity</h1>
+<p className="text-[#5a5c58] text-lg max-w-2xl leading-relaxed">
                                 Detailed chronological log of all community support interactions and data streams ingested into the guardian system.
                             </p>
 </div>

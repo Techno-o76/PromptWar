@@ -2,6 +2,15 @@
 
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { Shield, Database, HeartHandshake, History, LibraryBig, Siren } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { name: 'Guardian Hub', icon: Shield, active: false, href: '/' },
+  { name: 'Data Ingestion', icon: Database, active: true, href: '/data-ingestion' },
+  { name: 'Support Flow', icon: HeartHandshake, active: false, href: '/support-flow' },
+  { name: 'History', icon: History, active: false, href: '/history' },
+  { name: 'Resources', icon: LibraryBig, active: false, href: '/resources' },
+];
 
 export default function DataIngestion() {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -87,66 +96,40 @@ export default function DataIngestion() {
     <div className="bg-[#f7f7f2] min-h-screen flex text-[#2d2f2c] overflow-hidden">
       
 
-<aside className="hidden md:flex flex-col h-screen w-72 rounded-r-[3rem] border-r-0 bg-[#f7f7f2] shadow-[0_20px_40px_rgba(45,47,44,0.06)] py-8 gap-2 sticky top-0">
-<div className="px-8 mb-8">
-<div className="flex items-center gap-3">
-<div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
-<span className="material-symbols-outlined" >shield_with_heart</span>
-</div>
-<div>
-<h2 className="text-lg font-bold text-[#2d2f2c] font-headline leading-tight">Safety Guardian</h2>
-<p className="text-xs text-stone-500 font-medium">Community Support</p>
-</div>
-</div>
-</div>
-<nav className="flex-1 flex flex-col gap-2">
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
-<span className="material-symbols-outlined">shield_with_heart</span>
-<span>Guardian Hub</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/data-ingestion">
-<span className="material-symbols-outlined" >database</span>
-<span>Data Ingestion</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
-<span className="material-symbols-outlined">volunteer_activism</span>
-<span>Support Flow</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
-<span className="material-symbols-outlined">history</span>
-<span>History</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
-<span className="material-symbols-outlined">library_books</span>
-<span>Resources</span>
-</Link>
-</nav>
-<div className="px-8 mt-auto pt-8">
-<button aria-label="Action" className="w-full bg-secondary-container text-on-secondary-container font-bold py-4 rounded-full shadow-sm hover:scale-[1.02] transition-transform active:scale-95">
-                Safety Assistance
-            </button>
-</div>
-<div className="mt-6 flex flex-col gap-1">
-<a aria-label="Link" className="text-stone-600 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
-<span className="material-symbols-outlined">help</span>
-<span>Help Center</span>
-</a>
-<a aria-label="Link" className="text-stone-600 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
-<span className="material-symbols-outlined">logout</span>
-<span>Logout</span>
-</a>
-</div>
+<aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] z-40 border-r border-[#e8e9e3] shadow-[0_20px_40px_rgba(45,47,44,0.06)]">
+  <div className="px-8 mb-10">
+    <h1 className="text-xl font-bold text-[#29664c] tracking-tight">NEXUS Bridge</h1>
+    <p className="text-xs text-[#5a5c58] opacity-70 mt-1">Societal Benefit Intel</p>
+  </div>
+  
+  <nav className="flex flex-col gap-2">
+    {NAV_ITEMS.map((item) => (
+      <Link aria-label="Navigation Link" 
+        key={item.name} 
+        href={item.href} 
+        className={item.active 
+          ? "bg-[#b9f9d6] text-[#29664c] rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-medium transition-all duration-300"
+          : "text-[#2d2f2c] opacity-70 mx-4 px-6 py-3 flex items-center gap-3 font-medium hover:bg-[#e8e9e3] rounded-full transition-all"
+        }
+      >
+        <item.icon className={`w-5 h-5 ${item.active ? 'fill-[#29664c]/20' : ''}`} />
+        {item.name}
+      </Link>
+    ))}
+  </nav>
+  
+  <div className="mt-auto px-8">
+    <button aria-label="Action" className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
+      <Siren className="w-5 h-5" />
+      Safety Assistance
+    </button>
+  </div>
 </aside>
-<main className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
+<main className="flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
 
-<header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2] sticky top-0 z-10">
+<header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2]/80 backdrop-blur-xl border-b border-[#e8e9e3] sticky top-0 z-30">
 <div className="flex items-center gap-4">
-<h1 className="text-xl font-extrabold text-[#29664c] font-headline tracking-tight">Safety Guardian Hub</h1>
+<h2 className="text-2xl font-extrabold text-[#29664c] tracking-tight">Safety Guardian Hub</h2>
 </div>
 <div className="flex items-center gap-6">
 <div className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-primary-container/30 rounded-full">
@@ -173,8 +156,8 @@ export default function DataIngestion() {
 <section className="space-y-6">
 <div className="flex flex-col md:flex-row justify-between items-end gap-4">
 <div className="max-w-2xl">
-<h2 className="text-4xl md:text-5xl font-extrabold font-headline text-on-surface tracking-tight mb-4">Data Ingestion</h2>
-<p className="text-lg text-on-surface-variant leading-relaxed">Feed our AI ecosystem with unstructured field data to enhance community safety insights in real-time.</p>
+<h2 className="text-4xl md:text-5xl font-extrabold text-[#2d2f2c] tracking-tight mb-4">Data Ingestion</h2>
+<p className="text-lg text-[#5a5c58] leading-relaxed">Feed our AI ecosystem with unstructured field data to enhance community safety insights in real-time.</p>
 </div>
 </div>
 

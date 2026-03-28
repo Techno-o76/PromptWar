@@ -1,70 +1,52 @@
 'use client';
 
 import Link from 'next/link';
+import { Shield, Database, HeartHandshake, History, LibraryBig, Siren } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { name: 'Guardian Hub', icon: Shield, active: false, href: '/' },
+  { name: 'Data Ingestion', icon: Database, active: false, href: '/data-ingestion' },
+  { name: 'Support Flow', icon: HeartHandshake, active: true, href: '/support-flow' },
+  { name: 'History', icon: History, active: false, href: '/history' },
+  { name: 'Resources', icon: LibraryBig, active: false, href: '/resources' },
+];
 
 export default function SupportFlow() {
   return (
     <div className="bg-[#f7f7f2] min-h-screen flex text-[#2d2f2c] overflow-hidden">
       
 
-<aside className="hidden md:flex flex-col h-screen w-72 bg-[#f7f7f2] py-8 gap-2 rounded-r-[3rem] shadow-[0_20px_40px_rgba(45,47,44,0.06)] z-20 sticky top-0">
-<div className="px-8 mb-10">
-<div className="flex items-center gap-3">
-<div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
-<span className="material-symbols-outlined" data-icon="shield_with_heart" >shield_with_heart</span>
-</div>
-<div>
-<h1 className="text-lg font-bold text-[#2d2f2c]">Safety Guardian</h1>
-<p className="text-xs text-stone-500 font-medium">Community Support</p>
-</div>
-</div>
-</div>
-<nav className="flex-1 flex flex-col gap-2">
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/">
-<span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
-<span>Guardian Hub</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/data-ingestion">
-<span className="material-symbols-outlined" data-icon="database">database</span>
-<span>Data Ingestion</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-medium text-sm shadow-lg shadow-primary/20" href="/support-flow">
-<span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
-<span>Support Flow</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/history">
-<span className="material-symbols-outlined" data-icon="history">history</span>
-<span>History</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/resources">
-<span className="material-symbols-outlined" data-icon="library_books">library_books</span>
-<span>Resources</span>
-</Link>
-</nav>
-<div className="px-8 mt-auto pt-6 flex flex-col gap-6">
-<button aria-label="Action" className="bg-secondary-container text-on-secondary-container rounded-full py-4 px-6 font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[0.98] transition-transform">
-<span className="material-symbols-outlined" data-icon="emergency">emergency</span>
-                Safety Assistance
-            </button>
-<div className="flex flex-col gap-1">
-<a aria-label="Link" className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
-<span className="material-symbols-outlined" data-icon="help">help</span>
-                    Help Center
-                </a>
-<a aria-label="Link" className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
-<span className="material-symbols-outlined" data-icon="logout">logout</span>
-                    Logout
-                </a>
-</div>
-</div>
+<aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] z-40 border-r border-[#e8e9e3] shadow-[0_20px_40px_rgba(45,47,44,0.06)]">
+  <div className="px-8 mb-10">
+    <h1 className="text-xl font-bold text-[#29664c] tracking-tight">NEXUS Bridge</h1>
+    <p className="text-xs text-[#5a5c58] opacity-70 mt-1">Societal Benefit Intel</p>
+  </div>
+  
+  <nav className="flex flex-col gap-2">
+    {NAV_ITEMS.map((item) => (
+      <Link aria-label="Navigation Link" 
+        key={item.name} 
+        href={item.href} 
+        className={item.active 
+          ? "bg-[#b9f9d6] text-[#29664c] rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-medium transition-all duration-300"
+          : "text-[#2d2f2c] opacity-70 mx-4 px-6 py-3 flex items-center gap-3 font-medium hover:bg-[#e8e9e3] rounded-full transition-all"
+        }
+      >
+        <item.icon className={`w-5 h-5 ${item.active ? 'fill-[#29664c]/20' : ''}`} />
+        {item.name}
+      </Link>
+    ))}
+  </nav>
+  
+  <div className="mt-auto px-8">
+    <button aria-label="Action" className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
+      <Siren className="w-5 h-5" />
+      Safety Assistance
+    </button>
+  </div>
 </aside>
 
-<main className="flex-1 h-screen overflow-y-auto bg-surface relative flex flex-col">
+<main className="flex-1 h-screen overflow-y-auto bg-[#f7f7f2] relative flex flex-col">
 
 <header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2] sticky top-0 z-10">
 <div className="flex items-center gap-4">
@@ -94,8 +76,8 @@ export default function SupportFlow() {
 <div className="px-8 pt-12 pb-8">
 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
 <div>
-<h2 className="text-5xl font-['Plus_Jakarta_Sans'] font-extrabold text-on-surface tracking-tight mb-4">Support Flow</h2>
-<p className="text-lg text-stone-500 max-w-2xl leading-relaxed">
+<h2 className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-extrabold text-[#2d2f2c] tracking-tight mb-4">Support Flow</h2>
+<p className="text-lg text-[#5a5c58] max-w-2xl leading-relaxed">
                         Orchestrate and monitor community support actions. Build response workflows and allocate resources to where they are needed most.
                     </p>
 </div>

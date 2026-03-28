@@ -1,64 +1,54 @@
 'use client';
 
 import Link from 'next/link';
+import { Shield, Database, HeartHandshake, History, LibraryBig, Siren } from 'lucide-react';
+
+const NAV_ITEMS = [
+  { name: 'Guardian Hub', icon: Shield, active: false, href: '/' },
+  { name: 'Data Ingestion', icon: Database, active: false, href: '/data-ingestion' },
+  { name: 'Support Flow', icon: HeartHandshake, active: false, href: '/support-flow' },
+  { name: 'History', icon: History, active: false, href: '/history' },
+  { name: 'Resources', icon: LibraryBig, active: true, href: '/resources' },
+];
 
 export default function Resources() {
   return (
     <div className="bg-[#f7f7f2] min-h-screen flex text-[#2d2f2c] overflow-hidden">
       
 
-<aside className="hidden md:flex flex-col h-screen w-72 bg-[#f7f7f2] py-8 gap-2 shadow-[0_20px_40px_rgba(45,47,44,0.06)] fixed left-0 top-0 rounded-r-[3rem] z-50">
-<div className="px-8 mb-10 flex items-center gap-3">
-<div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-primary-fixed">
-<span className="material-symbols-outlined" data-weight="fill" >shield_with_heart</span>
-</div>
-<div>
-<h2 className="text-lg font-bold text-[#2d2f2c]">Safety Guardian</h2>
-<p className="text-xs text-stone-500 font-medium">Community Support</p>
-</div>
-</div>
-<nav className="flex-1 space-y-1">
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/">
-<span className="material-symbols-outlined">shield_with_heart</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
-<span className="material-symbols-outlined">database</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
-<span className="material-symbols-outlined">volunteer_activism</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
-</Link>
-<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/history">
-<span className="material-symbols-outlined">history</span>
-<span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
-</Link>
-
-<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all" href="/resources">
-<span className="material-symbols-outlined" >library_books</span>
-<span className="font-['Plus_Jakarta_Sans'] font-bold text-sm">Resources</span>
-</Link>
-</nav>
-<div className="mt-auto pt-8 border-t border-[#e8e9e3] mx-6">
-<a aria-label="Link" className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
-<span className="material-symbols-outlined">help</span> Help Center
-            </a>
-<a aria-label="Link" className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
-<span className="material-symbols-outlined">logout</span> Logout
-            </a>
-<div className="mt-6 p-4 bg-secondary-container rounded-3xl flex items-center gap-3">
-<div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-<span className="material-symbols-outlined text-on-secondary-container">medical_services</span>
-</div>
-<span className="text-xs font-bold text-on-secondary-container">Safety Assistance</span>
-</div>
-</div>
+<aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] z-40 border-r border-[#e8e9e3] shadow-[0_20px_40px_rgba(45,47,44,0.06)]">
+  <div className="px-8 mb-10">
+    <h1 className="text-xl font-bold text-[#29664c] tracking-tight">NEXUS Bridge</h1>
+    <p className="text-xs text-[#5a5c58] opacity-70 mt-1">Societal Benefit Intel</p>
+  </div>
+  
+  <nav className="flex flex-col gap-2">
+    {NAV_ITEMS.map((item) => (
+      <Link aria-label="Navigation Link" 
+        key={item.name} 
+        href={item.href} 
+        className={item.active 
+          ? "bg-[#b9f9d6] text-[#29664c] rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-medium transition-all duration-300"
+          : "text-[#2d2f2c] opacity-70 mx-4 px-6 py-3 flex items-center gap-3 font-medium hover:bg-[#e8e9e3] rounded-full transition-all"
+        }
+      >
+        <item.icon className={`w-5 h-5 ${item.active ? 'fill-[#29664c]/20' : ''}`} />
+        {item.name}
+      </Link>
+    ))}
+  </nav>
+  
+  <div className="mt-auto px-8">
+    <button aria-label="Action" className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
+      <Siren className="w-5 h-5" />
+      Safety Assistance
+    </button>
+  </div>
 </aside>
 
-<main className="flex-1 md:ml-72 bg-background min-h-screen">
+<main className="flex-1 flex flex-col min-h-screen overflow-x-hidden relative">
 
-<header className="flex justify-between items-center w-full px-8 py-6 sticky top-0 bg-[#f7f7f2]/80 backdrop-blur-md z-40">
+<header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2]/80 backdrop-blur-md sticky top-0 border-b border-[#e8e9e3] z-40">
 <div className="flex items-center gap-4">
 <h1 className="text-xl font-extrabold text-[#29664c] tracking-tight font-headline">Safety Guardian Hub</h1>
 <div className="hidden lg:flex bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-variant/10 items-center gap-2">
@@ -82,9 +72,9 @@ export default function Resources() {
 
 <section className="mt-8 mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
 <div className="lg:col-span-7">
-<span className="inline-block px-4 py-1.5 bg-primary-container text-on-primary-container rounded-full text-xs font-bold mb-4">Resource Library</span>
-<h2 className="text-5xl font-extrabold text-on-surface tracking-tight leading-tight mb-6">Empower Your <br/><span className="text-primary italic">Community Response</span></h2>
-<p className="text-lg text-on-surface-variant max-w-xl mb-8">Access our comprehensive library of toolkits, safety guidelines, and local coordination assets designed for resilience.</p>
+<span className="inline-block px-4 py-1.5 bg-[#b9f9d6] text-[#29664c] border border-[#29664c]/20 rounded-full text-xs font-bold mb-4">Resource Library</span>
+<h2 className="text-5xl font-extrabold text-[#2d2f2c] tracking-tight leading-tight mb-6">Empower Your <br/><span className="text-[#29664c] italic">Community Response</span></h2>
+<p className="text-lg text-[#5a5c58] max-w-xl mb-8">Access our comprehensive library of toolkits, safety guidelines, and local coordination assets designed for resilience.</p>
 <div className="relative max-w-lg">
 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
 <input aria-label="Input field" className="w-full pl-12 pr-6 py-4 bg-surface-container-highest rounded-full border-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface shadow-sm" placeholder="Search for guides, protocols, or contacts..." type="text"/>
