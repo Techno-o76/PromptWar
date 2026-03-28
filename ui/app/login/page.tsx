@@ -97,6 +97,9 @@ export default function SafetyGuardianLogin() {
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
                     <input 
                       type="email" 
+                      id="email"
+                      name="email"
+                      aria-label="Email address"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -115,6 +118,9 @@ export default function SafetyGuardianLogin() {
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
                     <input 
                       type="password" 
+                      id="password"
+                      name="password"
+                      aria-label="Password"
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
