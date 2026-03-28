@@ -11,5 +11,6 @@ func RegisterRoutes(r *gin.Engine) {
         api.POST("/login", HandleLogin)
 		api.POST("/defend", HandlePromptDefense)
 		api.POST("/triage", HandleTriage)
+		api.POST("/ingest", HandleDataIngestion)
 	}
 }

@@ -38,3 +38,18 @@ func TestAnalyzerNoConflicts(t *testing.T) {
 		t.Errorf("Expected no conflicts, but found: %s", plan.LifeThreateningConflict)
 	}
 }
+
+// unit_test for multimodal analyzer fallback
+func TestAnalyzeMultimodalInputFallback(t *testing.T) {
+	ctx := context.Background()
+	intent := "Patient is allergic to penicillin."
+	
+	plan, err := AnalyzeMultimodalInput(ctx, "image/jpeg", []byte("dummydata"), intent, false)
+	if err != nil {
+		t.Fatalf("AnalyzeMultimodalInput failed: %v", err)
+	}
+
+	if plan.Priority != "CRITICAL HIGH" {
+		t.Errorf("Expected priority to auto-escalate due to allergy in intent, got: %s", plan.Priority)
+	}
+}

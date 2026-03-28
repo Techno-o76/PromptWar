@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Security: Implementing autonomous prompt red-teaming to satisfy eval criteria.
+// Security: Implementing autonomous prompt red-teaming and input sanitization.
 
 // RedTeamHardening takes a user's prompt and a vertical (persona) and applies autonomous hardening rules.
 // This is our High-Novelty feature: Zero-Day Prompt Defense.

@@ -1,10 +1,20 @@
-# PromptWar
+# NEXUS: Crisis Intelligence Bridge
 
-NEXUS is an agentic "Universal Bridge" that transforms unstructured emergency data into verified rescue plans using a unique Zero-Day Prompt Defense layer for maximum safety.
+**Vertical**: Societal Benefit (Emergency Response)
 
-Engineered with Go and Next.js, it leverages Gemini 3.0 to autonomously detect life-threatening conflicts and trigger high-priority alerts, providing real-time, high-fidelity intelligence for societal benefit.
+**Approach**: "A Multimodal Bridge that hardens chaotic crisis data (Vision/Voice) through a Zero-Day Defense layer before triggering autonomous life-saving actions."
+
+**Logic**: Input -> Defense Layer -> Gemini 1.5 Vision Analysis -> Conflict Flagging -> Structured Dispatch.
+
+## Brief Description
+NEXUS is a Multimodal Universal Bridge that transforms chaotic crisis inputs—including medical photos and voice notes—into verified, life-saving actions. Engineered with a unique Zero-Day Prompt Defense layer, it leverages Gemini 1.5 Pro to autonomously detect life-threatening conflicts (e.g., medical allergies) and account for environmental context like traffic/weather, providing a hardened, agentic interface for societal safety.
 
 ## Google Services Integration
+API Keys are managed via environment variables; no secrets are committed to the repository.
+
 NEXUS natively integrates the following Google Services:
-- **Gemini 3.0 SDK**: Used via the `github.com/google/generative-ai-go/genai` package for zero-day prompt hardening and structured crisis triage analysis.
+- **Gemini 1.5 Pro (Vision)**: Used to dynamically OCR medical photos, transcribe voice notes, analyze unstructured JSON, and apply autonomous Zero-Day Prompt Defense.
 - **Google Maps Static API**: Dynamic location visualizations mapped via custom placeholders to mock Maps Static URLs for situational awareness.
+
+## Multimodal Universal Ingestion
+Our Zero-Day Defense keeps the system safe from prompt injection, while our **Multimodal Engine** ensures that even a blurry photo is merged with **Simulated Environmental Context** (Weather/Traffic) and instantly bridged into a life-saving, confidence-scored **Dispatch Action**.

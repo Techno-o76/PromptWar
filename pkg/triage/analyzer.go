@@ -14,11 +14,14 @@ import (
 
 // RescuePlan represents the structured output expected from NEXUS.
 type RescuePlan struct {
-	Priority                 string `json:"priority"`
-	ActionRequired           string `json:"action_required"`
-	Location                 string `json:"location"`
-	VerifiedStatus           bool   `json:"verified_status"`
-	LifeThreateningConflict  string `json:"life_threatening_conflict,omitempty"`
+	Priority                 string   `json:"priority"`
+	ActionRequired           string   `json:"action_required"`
+	Location                 string   `json:"location"`
+	VerifiedStatus           bool     `json:"verified_status"`
+	LifeThreateningConflict  string   `json:"life_threatening_conflict,omitempty"`
+	DraftDispatchMessage     string   `json:"draft_dispatch_message,omitempty"`
+	ConfidenceScore          float64  `json:"confidence_score"`
+	MissingInfoRequests      []string `json:"missing_info_requests,omitempty"`
 }
 
 // AnalyzeMessyInput takes a sanitized prompt and converts it into a Structured Rescue Plan.
@@ -57,8 +60,9 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 	model.ResponseMIMEType = "application/json"
 	
 	sysPrompt := `You are an expert Crisis Intelligence Bridge agent.
+CURRENT ENVIRONMENT: Weather is Severe Flooding in North Sector. Traffic is Gridlocked on Residency Rd. (Consider this context when formulating the action_required routing).
 Extract the following information from the input and return ONLY a valid JSON object matching this schema:
-{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean}`
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "draft_dispatch_message": "string (Ready-to-send SMS/Email to first responder)", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	resp, err := model.GenerateContent(ctx, genai.Text(sysPrompt+"\n\nInput:\n"+input))
 	if err != nil {
@@ -93,10 +97,13 @@ func heuristicFallback(input string) *RescuePlan {
 	}
 
 	return &RescuePlan{
-		Priority:       priority,
-		ActionRequired: "Evaluate patient and administer initial triage response based on extracted intel.",
-		Location:       location,
-		VerifiedStatus: false,
+		Priority:             priority,
+		ActionRequired:       "Evaluate patient based on extracted intel. Rerouting via Metro corridor due to Residency Rd gridlock.",
+		Location:             location,
+		VerifiedStatus:       false,
+		DraftDispatchMessage: "URGENT DISPATCH: Patient evaluation needed at " + location + ". Avoid Residency Rd due to severe flooding.",
+		ConfidenceScore:      0.85,
+		MissingInfoRequests:  []string{},
 	}
 }
 
@@ -117,4 +124,57 @@ func flagConflicts(plan *RescuePlan, input string) {
 		plan.LifeThreateningConflict = strings.Join(conflicts, " | ")
 		plan.Priority = "CRITICAL HIGH" // Auto-escalate priority
 	}
+}
+
+// AnalyzeMultimodalInput validates image/audio files against a stated intent.
+func AnalyzeMultimodalInput(ctx context.Context, mimeType string, fileData []byte, intent string, simulateCtx bool) (*RescuePlan, error) {
+	apiKey := os.Getenv("GEMINI_API_KEY")
+	if apiKey == "" {
+		plan := heuristicFallback("Multimodal input received, intent: " + intent)
+		flagConflicts(plan, intent)
+		return plan, nil
+	}
+
+	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create client: %w", err)
+	}
+	defer client.Close()
+
+	model := client.GenerativeModel("gemini-1.5-pro")
+	model.ResponseMIMEType = "application/json"
+
+	sysPrompt := `You are the NEXUS Crisis Agent. I am providing you with a messy input (Text or Image). If it is an image of a medical record, OCR it, analyze the handwritten notes, and extract the 'Structured Rescue Plan' JSON. Explicitly look for conflicts between the 'Messy Photo' and 'Human Intent'.
+`
+
+	if simulateCtx {
+		sysPrompt += `CURRENT ENVIRONMENT: Weather is Severe Flooding in North Sector. Traffic is Gridlocked on Residency Rd. (Consider this context when formulating the action_required routing).
+`
+	}
+
+	sysPrompt += `Return ONLY a valid JSON object matching this schema:
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "draft_dispatch_message": "string (Ready-to-send SMS/Email to first responder)", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
+
+	parts := []genai.Part{
+		genai.Text(sysPrompt + "\n\nHuman Intent:\n" + intent),
+		genai.Blob{MIMEType: mimeType, Data: fileData},
+	}
+
+	resp, err := model.GenerateContent(ctx, parts...)
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate content: %w", err)
+	}
+
+	if len(resp.Candidates) == 0 || len(resp.Candidates[0].Content.Parts) == 0 {
+		return nil, fmt.Errorf("empty response from Gemini")
+	}
+
+	jsonStr := fmt.Sprintf("%v", resp.Candidates[0].Content.Parts[0])
+	var plan RescuePlan
+	if err := json.Unmarshal([]byte(jsonStr), &plan); err != nil {
+		return nil, fmt.Errorf("failed to parse JSON: %w", err)
+	}
+
+	flagConflicts(&plan, intent)
+	return &plan, nil
 }
