@@ -238,13 +238,21 @@ export default function DataIngestion() {
     <div>
       <div className="flex items-center justify-between mb-2">
           <label className="block text-sm font-bold text-on-surface">Human Intent (Optional Context)</label>
-          <button aria-label="Record Voice Intent"
-            onClick={isRecording ? stopVoiceRecording : startVoiceRecording}
-            className={`flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border transition-all ${isRecording ? 'bg-error text-white border-error animate-pulse shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}
-          >
-            <span className="material-symbols-outlined text-[14px]">{isRecording ? "stop_circle" : "mic"}</span>
-            {isRecording ? "Stop Recording (Saving to file)..." : "Record Voice Memo"}
-          </button>
+          <div className="flex items-center gap-3">
+            {selectedFile && selectedFile.name === "voice_memo.webm" && (
+              <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full flex items-center gap-1 border border-green-200 shadow-sm animate-in fade-in slide-in-from-right-4">
+                <span className="material-symbols-outlined text-[14px]">check_circle</span>
+                Voice Saved
+              </span>
+            )}
+            <button aria-label="Record Voice Intent"
+              onClick={isRecording ? stopVoiceRecording : startVoiceRecording}
+              className={`flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border transition-all ${isRecording ? 'bg-red-500 text-white border-red-600 animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.5)]' : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}
+            >
+              <span className="material-symbols-outlined text-[14px]">{isRecording ? "stop_circle" : "mic"}</span>
+              {isRecording ? "Stop Recording..." : "Record Voice Memo"}
+            </button>
+          </div>
       </div>
       <textarea aria-label="Text Intent Input Area"
         value={intent}
