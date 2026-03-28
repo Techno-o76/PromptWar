@@ -24,13 +24,13 @@ func TestRedTeamHardening(t *testing.T) {
 
 func TestStandardHardening(t *testing.T) {
 	prompt := "What is the capital of France?"
-	vertical := "Financial"
+	vertical := "Crisis Intelligence"
 	
 	hardened := RedTeamHardening(prompt, vertical)
 	
 	// Check if the vertical wrapper is present
-	if !strings.Contains(hardened, "Financial Advisor") {
-		t.Errorf("Vertical wrapper for 'Financial' not found in hardened prompt.")
+	if !strings.Contains(hardened, "Crisis Intelligence Bridge") {
+		t.Errorf("Vertical wrapper for 'Crisis Intelligence' not found in hardened prompt.")
 	}
 	
 	// Check that we didn't add a security warning for a safe prompt

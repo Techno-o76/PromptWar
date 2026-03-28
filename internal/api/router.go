@@ -9,5 +9,6 @@ func RegisterRoutes(r *gin.Engine) {
 	api := r.Group("/api/v1")
 	{
 		api.POST("/defend", HandlePromptDefense)
+		api.POST("/triage", HandleTriage)
 	}
 }
