@@ -17,6 +17,7 @@ func prepareRouter() *gin.Engine {
 	return r
 }
 
+// unit_test for HandleLogin
 func TestHandleLogin(t *testing.T) {
 	router := prepareRouter()
 
@@ -37,6 +38,7 @@ func TestHandleLogin(t *testing.T) {
 	}
 }
 
+// unit_test for HandleTriage
 func TestHandleTriage(t *testing.T) {
 	router := prepareRouter()
 
