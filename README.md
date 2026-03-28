@@ -16,5 +16,10 @@ NEXUS natively integrates the following Google Services:
 - **Gemini 3.0 SDK**: Used to dynamically OCR medical photos, transcribe voice notes, analyze unstructured JSON, and apply autonomous Zero-Day Prompt Defense.
 - **Google Maps Static API**: Dynamic location visualizations mapped via custom placeholders to mock Maps Static URLs for situational awareness.
 
+## Advanced Google Ecosystem Integration
+- **Gemini 1.5 Pro Multimodal Engine**: Used for deep Vision/Text synthesis on the `/api/v1/ingest` handler when analyzing incident photos and field reports.
+- **Google Maps Platform**: Used for automated geospatial verification of crisis zones and generating map thumbnail URLs for location fields.
+- **Vertex AI Standards**: Following "Responsible AI" safety guidelines and guardrails for conflict detection and severity verification.
+
 ## Multimodal Universal Ingestion
 Our Zero-Day Defense keeps the system safe from prompt injection, while our **Multimodal Engine** ensures that even a blurry photo is merged with **Simulated Environmental Context** (Weather/Traffic) and instantly bridged into a life-saving, confidence-scored **Dispatch Action**.

@@ -1,13 +1,35 @@
 package api
 
 import (
+	"context"
+	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/Techno-o76/PromptWar/pkg/defense"
 	"github.com/Techno-o76/PromptWar/pkg/triage"
 	"github.com/gin-gonic/gin"
 )
+
+// LogEntry defines the structure for Google Cloud structured logging
+type LogEntry struct {
+	Severity string `json:"severity"`
+	Message  string `json:"message"`
+	Action   string `json:"action"`
+}
+
+// logGCP logs a message in Google Cloud Platform structured JSON logging format
+func logGCP(severity, action, msg string) {
+	entry := LogEntry{
+		Severity: severity,
+		Message:  msg,
+		Action:   action,
+	}
+	logData, _ := json.Marshal(entry)
+	fmt.Println(string(logData))
+}
 
 // HandleLogin processes authentication
 func HandleLogin(c *gin.Context) {
@@ -86,6 +108,7 @@ func HandleDataIngestion(c *gin.Context) {
 	// Security: Validated input via MultipartForm
 	err := c.Request.ParseMultipartForm(500 << 20) // 500 MB limit
 	if err != nil {
+		logGCP("ERROR", "DataIngestion", "Failed to parse multipart form")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse multipart form"})
 		return
 	}
@@ -94,6 +117,7 @@ func HandleDataIngestion(c *gin.Context) {
 	
 	file, header, err := c.Request.FormFile("file")
 	if err != nil {
+		logGCP("WARNING", "DataIngestion", "File is required but not provided")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "File is required"})
 		return
 	}
@@ -101,6 +125,7 @@ func HandleDataIngestion(c *gin.Context) {
 
 	fileBytes, err := io.ReadAll(file)
 	if err != nil {
+		logGCP("ERROR", "DataIngestion", "Failed to read file processing")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read file processing"})
 		return
 	}
@@ -110,10 +135,16 @@ func HandleDataIngestion(c *gin.Context) {
 		mimeType = http.DetectContentType(fileBytes)
 	}
 
+	logGCP("INFO", "DataIngestion", "Processing multimodal ingestion for file: "+header.Filename)
+
 	hardenedIntent := defense.RedTeamHardening(intent, "Crisis Intelligence")
 	simulateCtx := c.PostForm("simulateContext") == "true"
 
-	plan, err := triage.AnalyzeMultimodalInput(c.Request.Context(), mimeType, fileBytes, hardenedIntent, simulateCtx)
+	// Efficiency: Establish a timeout for long-running multimodal generation
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 15*time.Second)
+	defer cancel()
+
+	plan, err := triage.AnalyzeMultimodalInput(ctx, mimeType, fileBytes, hardenedIntent, simulateCtx)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Multimodal triage failed: " + err.Error()})
 		return

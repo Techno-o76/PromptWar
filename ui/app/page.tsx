@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Shield, Database, HeartHandshake, History, LibraryBig, Siren, 
   Bell, LineChart, RefreshCcw, TrafficCone, Thermometer, Newspaper, Radio, 
@@ -107,7 +108,9 @@ export default function SafetyGuardianHub() {
               <button aria-label="Action" className="p-2 rounded-full hover:bg-[#e8e9e3] transition-colors">
                 <Bell className="w-6 h-6 text-[#2d2f2c]" />
               </button>
-              <img alt="User Profile" className="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8cz3ksV0AtaiNNca31lbif5FEp8m8w8NbRmmum8RK-fKHcKjIvebiJRQQrCCY8G7ZVGk7-jViuQkr9V0cmg7eEHYe8zyCGZ5Ans20Y9SETWYgoNy1RTKT1bXixptYMGVaNtuaPFQfnTdvtvKWOWOs-njVaEqlyBAv__A8ziS1b_5ps8e3G-GE1hwuVMXD8wo6HSbUu_R2Kw1Ar8iIOooJ7afdmV5vgwTM80e0OP5dtNlV0nGiBIyz5KNNg6MF3zUzX4YBtuiBSRQ" />
+              <Suspense fallback={<div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>}>
+                <Image width={40} height={40} alt="User Profile" className="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8cz3ksV0AtaiNNca31lbif5FEp8m8w8NbRmmum8RK-fKHcKjIvebiJRQQrCCY8G7ZVGk7-jViuQkr9V0cmg7eEHYe8zyCGZ5Ans20Y9SETWYgoNy1RTKT1bXixptYMGVaNtuaPFQfnTdvtvKWOWOs-njVaEqlyBAv__A8ziS1b_5ps8e3G-GE1hwuVMXD8wo6HSbUu_R2Kw1Ar8iIOooJ7afdmV5vgwTM80e0OP5dtNlV0nGiBIyz5KNNg6MF3zUzX4YBtuiBSRQ" />
+              </Suspense>
             </div>
           </div>
         </header>
@@ -204,8 +207,8 @@ export default function SafetyGuardianHub() {
                   <p className="text-sm text-[#5a5c58]">Live Community Assistance Stream</p>
                 </div>
                 <div className="flex -space-x-3">
-                  <img alt="Guardian" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVCdcmsv7wmrFlw7dDWHVtQj7PRt9dvRL1CAwMFcMUYJRh5EWp6ie4aBZFkm3bcyIZLUTynhYGD6rq41OCuCJxjteOE_5UMaTEwAqIVu4TTmcvV2rPF5hd6J4p7ywX96giNzZDwhEuzucpHvMfzzDcyKPN1nIk4hGbiE1Vi2YAnS2_KmsocXWZsAirLZhglDngMVWpvsZo1D_K5pTZW1YY0RV52nzLGxPxq5ox2aCOohPNA6z_dicR9CDSoZL56NIyaSc2Bp0JwmY" />
-                  <img alt="Guardian" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxeHlC8Bz0kGJuOrtK4UZe_VUFS4p_XP_bwCMnDKnAyRMhVFv_e_O8LWm-62_tZQJ7JcykBNmhz5zl3SNgl9zXxRteb5lsMSVKm744CCJoRuEVRCiDFm6yVBcHzlmIJrrHXGcMo2ebncWi4f67kmjdhCmga0AUzfs08BUap9q9QYptlrQ4jJC8b1O_rv_TQiy-MrQSbSB_-mgBrEcdK7aoiAlrH7JUGpTAYpXoEdyNz_saFFnl1vB-BUfuIQ5XtER5MV6zUy0kj2Y" />
+                  <Image width={32} height={32} alt="Guardian" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVCdcmsv7wmrFlw7dDWHVtQj7PRt9dvRL1CAwMFcMUYJRh5EWp6ie4aBZFkm3bcyIZLUTynhYGD6rq41OCuCJxjteOE_5UMaTEwAqIVu4TTmcvV2rPF5hd6J4p7ywX96giNzZDwhEuzucpHvMfzzDcyKPN1nIk4hGbiE1Vi2YAnS2_KmsocXWZsAirLZhglDngMVWpvsZo1D_K5pTZW1YY0RV52nzLGxPxq5ox2aCOohPNA6z_dicR9CDSoZL56NIyaSc2Bp0JwmY" />
+                  <Image width={32} height={32} alt="Guardian" className="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxeHlC8Bz0kGJuOrtK4UZe_VUFS4p_XP_bwCMnDKnAyRMhVFv_e_O8LWm-62_tZQJ7JcykBNmhz5zl3SNgl9zXxRteb5lsMSVKm744CCJoRuEVRCiDFm6yVBcHzlmIJrrHXGcMo2ebncWi4f67kmjdhCmga0AUzfs08BUap9q9QYptlrQ4jJC8b1O_rv_TQiy-MrQSbSB_-mgBrEcdK7aoiAlrH7JUGpTAYpXoEdyNz_saFFnl1vB-BUfuIQ5XtER5MV6zUy0kj2Y" />
                   <div className="w-8 h-8 rounded-full border-2 border-white bg-[#b9f9d6] text-[10px] flex items-center justify-center font-bold text-[#29664c]">+12</div>
                 </div>
               </div>
@@ -296,16 +299,21 @@ export default function SafetyGuardianHub() {
               </p>
               
               {result?.plan && (
-                <div className="mt-4 p-2 bg-[#f7f7f2] rounded-xl border border-[#e8e9e3] overflow-hidden">
-                   <p className="text-[10px] font-black tracking-widest text-[#29664c] uppercase mb-1 text-left px-2 pt-1">New Triage Intel Route</p>
-                   <img 
-                      src={result.plan.location === "Sector 7" 
-                        ? "https://placehold.co/400x120/f7f7f2/29664c?text=Maps+Routing:+Sector+7+Grid" 
-                        : `https://placehold.co/400x120/f7f7f2/29664c?text=Maps+Routing:+${encodeURIComponent(result.plan.location)}`}
-                      alt="Google Maps Static Integration"
-                      className="w-full h-24 object-cover rounded-lg"
-                    />
-                </div>
+                <Suspense fallback={<div className="w-full h-24 bg-gray-200 animate-pulse rounded-lg mt-4"></div>}>
+                  <div className="mt-4 p-2 bg-[#f7f7f2] rounded-xl border border-[#e8e9e3] overflow-hidden">
+                     <p className="text-[10px] font-black tracking-widest text-[#29664c] uppercase mb-1 text-left px-2 pt-1">New Triage Intel Route</p>
+                     <Image 
+                        width={400}
+                        height={120}
+                        unoptimized
+                        src={result.plan.location === "Sector 7" 
+                          ? "https://placehold.co/400x120/f7f7f2/29664c?text=Maps+Routing:+Sector+7+Grid" 
+                          : `https://placehold.co/400x120/f7f7f2/29664c?text=Maps+Routing:+${encodeURIComponent(result.plan.location)}`}
+                        alt="Google Maps Static Integration"
+                        className="w-full h-24 object-cover rounded-lg"
+                      />
+                  </div>
+                </Suspense>
               )}
 
               <button aria-label="Action" className="px-10 py-4 bg-[#29664c] text-white rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all mt-4 w-full">
