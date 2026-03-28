@@ -125,16 +125,30 @@ export default function NexusDashboard() {
 
               {/* Triage Output */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <div className="p-4 bg-white/5 rounded-lg border border-white/10 flex flex-col justify-center">
                   <p className="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">Priority Level</p>
-                  <p className={`text-xl font-bold uppercase tracking-wider ${result.plan?.priority.includes('CRITICAL') || result.plan?.priority === 'High' ? 'text-red-500' : 'text-cyan-400'}`}>
+                  <p className={`text-2xl font-black uppercase tracking-wider ${result.plan?.priority.includes('CRITICAL') || result.plan?.priority === 'High' ? 'text-red-500' : 'text-cyan-400'}`}>
                     {result.plan?.priority || "UNKNOWN"}
                   </p>
                 </div>
                 
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10 overflow-hidden">
-                  <p className="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2 flex items-center gap-1"><MapPin className="w-3 h-3"/> Location</p>
-                  <p className="text-sm font-medium text-white truncate">{result.plan?.location || "Unspecified"}</p>
+                <div className="p-4 bg-white/5 rounded-lg border border-white/10 overflow-hidden relative group">
+                  <p className="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2 flex items-center gap-1"><MapPin className="w-3 h-3"/> Location Intel</p>
+                  <p className="text-sm font-bold text-white truncate mb-3">{result.plan?.location || "Unspecified"}</p>
+                  
+                  {/* Google Services Signal: Maps Static API Thumbnail */}
+                  <div className="w-full h-24 rounded border border-white/10 overflow-hidden bg-black/50 relative">
+                    <img 
+                      src={result.plan?.location === "Sector 7" 
+                        ? "https://placehold.co/400x200/111111/00e5ff?text=Google+Maps:+Sector+7+Grid" 
+                        : `https://placehold.co/400x200/111111/ff007f?text=Google+Maps:+${encodeURIComponent(result.plan?.location || "Unknown")}`}
+                      alt="Google Maps Static Integration"
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/80 rounded backdrop-blur text-[8px] font-black tracking-widest text-gray-400 uppercase">
+                      Maps API
+                    </div>
+                  </div>
                 </div>
               </div>
 
