@@ -17,10 +17,10 @@ const NAV_ITEMS = [
 ];
 
 const SIGNALS = [
-  { name: 'Traffic Flow', desc: 'Real-time road density', icon: TrafficCone, color: 'text-blue-500', bg: 'bg-blue-50' },
-  { name: 'Weather', desc: 'Local climate shifts', icon: Thermometer, color: 'text-orange-400', bg: 'bg-orange-50' },
-  { name: 'News Feed', desc: 'Social sentiment', icon: Newspaper, color: 'text-purple-500', bg: 'bg-purple-50' },
-  { name: 'IoT Array', desc: 'Smart city sensors', icon: Radio, color: 'text-[#29664c]', bg: 'bg-[#b9f9d6]/30' },
+  { name: 'Traffic Flow', desc: 'Real-time road density', icon: TrafficCone, color: 'text-blue-500', bg: 'bg-blue-50', payload: 'Traffic camera analysis: Severe gridlock on I-95 North due to a multi-vehicle accident. Approaching ambulances are delayed by 15 minutes. Location: Sector 4.' },
+  { name: 'Weather', desc: 'Local climate shifts', icon: Thermometer, color: 'text-orange-400', bg: 'bg-orange-50', payload: 'Meteorological alert: Flash flood warning issued for the downtown basin. Water levels rising 2 inches per hour. Evacuation of ground-level residents advised. Location: Sector 2.' },
+  { name: 'News Feed', desc: 'Social sentiment', icon: Newspaper, color: 'text-purple-500', bg: 'bg-purple-50', payload: 'Social Media Sentiment: Trending hashtags indicate panic at Central Mall. Unconfirmed reports of structural collapse. Location: Sector 9.' },
+  { name: 'IoT Array', desc: 'Smart city sensors', icon: Radio, color: 'text-[#29664c]', bg: 'bg-[#b9f9d6]/30', payload: 'Sensor Array 42 Trigger: High levels of carbon monoxide detected in the ventilation sub-system. Life-threatening levels reached. Location: Sector 7.' },
 ];
 
 export default function SafetyGuardianHub() {
@@ -154,8 +154,12 @@ export default function SafetyGuardianHub() {
 
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {SIGNALS.map((sig) => (
-                  <div key={sig.name} className="bg-[#f7f7f2] p-5 rounded-xl flex flex-col gap-3 border border-[#dcddd7]/50 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className={`w-12 h-12 flex items-center justify-center rounded-2xl ${sig.bg}`}>
+                  <div 
+                    key={sig.name} 
+                    onClick={() => setPrompt(sig.payload)}
+                    className="bg-[#f7f7f2] p-5 rounded-xl flex flex-col gap-3 border border-[#dcddd7]/50 hover:shadow-md hover:border-[#b9f9d6] transition-all cursor-pointer group"
+                  >
+                    <div className={`w-12 h-12 flex items-center justify-center rounded-2xl ${sig.bg} group-hover:scale-110 transition-transform`}>
                       <sig.icon className={`w-6 h-6 ${sig.color}`} />
                     </div>
                     <div>
