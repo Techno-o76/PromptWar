@@ -21,30 +21,30 @@ export default function DataIngestion() {
 </div>
 <nav className="flex-1 flex flex-col gap-2">
 
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="#">
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span>Guardian Hub</span>
-</a>
+</Link>
 
-<a className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 hover:translate-x-1 duration-300 font-label text-sm font-medium" href="#">
+<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/data-ingestion">
 <span className="material-symbols-outlined" >database</span>
 <span>Data Ingestion</span>
-</a>
+</Link>
 
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="#">
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span>Support Flow</span>
-</a>
+</Link>
 
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="#">
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span>History</span>
-</a>
+</Link>
 
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="#">
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
 <span className="material-symbols-outlined">library_books</span>
 <span>Resources</span>
-</a>
+</Link>
 </nav>
 <div className="px-8 mt-auto pt-8">
 <button className="w-full bg-secondary-container text-on-secondary-container font-bold py-4 rounded-full shadow-sm hover:scale-[1.02] transition-transform active:scale-95">
@@ -238,25 +238,25 @@ export default function DataIngestion() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.05)] px-6 py-4 flex justify-between items-center z-50">
-<a className="flex flex-col items-center gap-1 text-stone-400" href="#">
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-primary" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-primary" href="/data-ingestion">
 <span className="material-symbols-outlined" >database</span>
 <span className="text-[10px] font-bold">Ingestion</span>
-</a>
+</Link>
 <div className="bg-secondary-container p-3 rounded-full -mt-10 shadow-lg">
 <span className="material-symbols-outlined text-on-secondary-container">add</span>
 </div>
-<a className="flex flex-col items-center gap-1 text-stone-400" href="#">
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span className="text-[10px] font-bold">Flow</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-stone-400" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span className="text-[10px] font-bold">History</span>
-</a>
+</Link>
 </nav>
 
     </div>
