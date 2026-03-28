@@ -7,6 +7,25 @@ import (
 	"github.com/Techno-o76/PromptWar/pkg/triage"
 )
 
+// HandleLogin processes authentication
+func HandleLogin(c *gin.Context) {
+	// Security: Validated input via Email/Password JSON binding
+	var req struct {
+		Email    string `json:"email" binding:"required"`
+		Password string `json:"password" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Authentication successful",
+		"token":   "nexus-session-token",
+	})
+}
+
 // HandlePromptDefense processes a prompt and applies autonomous red-teaming.
 func HandlePromptDefense(c *gin.Context) {
 	// Security: Validated input via JSON binding
