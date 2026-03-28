@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Techno-o76/PromptWar/pkg/cloud"
 	"github.com/Techno-o76/PromptWar/pkg/defense"
 	"github.com/Techno-o76/PromptWar/pkg/triage"
 	"github.com/gin-gonic/gin"
@@ -47,6 +48,26 @@ func HandleLogin(c *gin.Context) {
 		"status":  "success",
 		"message": "Authentication successful",
 		"token":   "nexus-session-token",
+	})
+}
+
+// HandleGoogleLogin processes simulated Google OAuth authentication
+func HandleGoogleLogin(c *gin.Context) {
+	// Security: Validated input via JSON binding
+	var req struct {
+		Token string `json:"token" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Google Auth token payload"})
+		return
+	}
+
+	cloud.LogStructuredEntry("INFO", "Google Auth verification triggered for simulated token.")
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  "success",
+		"message": "Google Authentication successful",
+		"token":   "nexus-session-token-google",
 	})
 }
 
@@ -94,6 +115,15 @@ func HandleTriage(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Triage analysis failed: " + err.Error()})
 		return
+	}
+
+	// Utilize Google Maps API to enrich spatial data
+	coords, _ := cloud.GeocodeLocation(c.Request.Context(), plan.Location)
+	plan.Location = fmt.Sprintf("%s (Coordinates: %s)", plan.Location, coords)
+
+	// Send Firebase Push Notification for urgent crises
+	if plan.Priority == "High" || plan.Priority == "CRITICAL HIGH" {
+		_ = cloud.SendFirebaseAlert(c.Request.Context(), "nexus-alerts", plan.AutonomousDispatchSMS)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -144,15 +174,31 @@ func HandleDataIngestion(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(c.Request.Context(), 15*time.Second)
 	defer cancel()
 
+	// Store artifact in Google Cloud Storage
+	fileUrl, err := cloud.UploadToStorage(ctx, "nexus-multimodal", header.Filename, fileBytes)
+	if err != nil {
+		logGCP("WARNING", "DataIngestion", "Failed to upload to Google Cloud Storage")
+	}
+
 	plan, err := triage.AnalyzeMultimodalInput(ctx, mimeType, fileBytes, hardenedIntent, simulateCtx)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Multimodal triage failed: " + err.Error()})
 		return
 	}
 
+	// Utilize Google Maps API to enrich spatial data
+	coords, _ := cloud.GeocodeLocation(ctx, plan.Location)
+	plan.Location = fmt.Sprintf("%s (Coordinates: %s)", plan.Location, coords)
+
+	// Send Firebase Push Notification for urgent crises
+	if plan.Priority == "High" || plan.Priority == "CRITICAL HIGH" {
+		_ = cloud.SendFirebaseAlert(ctx, "nexus-alerts", plan.AutonomousDispatchSMS)
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"status": "success",
 		"hardened_intent": hardenedIntent,
 		"plan": plan,
+		"gcs_url": fileUrl,
 	})
 }

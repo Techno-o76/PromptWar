@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { 
   Shield, Database, HeartHandshake, History, LibraryBig, Siren, 
   Bell, LineChart, RefreshCcw, TrafficCone, Thermometer, Newspaper, Radio, 
-  CheckCircle2, Hourglass, Info, Map, UploadCloud, AlertTriangle, MessageSquare, ShieldCheck
+  CheckCircle2, Hourglass, Info, Map, UploadCloud, AlertTriangle, MessageSquare, ShieldCheck, MapPin
 } from 'lucide-react';
 
 // Data extraction as per stitch-rules.md
@@ -32,15 +32,39 @@ export default function SafetyGuardianHub() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Geolocation State
+  const [userLocation, setUserLocation] = useState<string | null>(null);
+  const [locationLoading, setLocationLoading] = useState(false);
+
+  const requestLocation = () => {
+    setLocationLoading(true);
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation(`${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`);
+          setLocationLoading(false);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          setLocationLoading(false);
+        }
+      );
+    } else {
+      setLocationLoading(false);
+    }
+  };
+
   const handleTriage = async () => {
     setLoading(true);
     setError("");
     setResult(null);
     try {
+      const finalPrompt = userLocation ? `${prompt}\n\n[Live User Location: ${userLocation}]` : prompt;
+      
       const resp = await fetch("/api/v1/triage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ prompt: finalPrompt })
       });
       if (!resp.ok) throw new Error("Backend connection failed.");
       const data = await resp.json();
@@ -353,8 +377,13 @@ export default function SafetyGuardianHub() {
                 </Suspense>
               )}
 
-              <button aria-label="Action" className="px-10 py-4 bg-[#29664c] text-white rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all mt-4 w-full">
-                Open Live Map View
+              <button aria-label="Action" 
+                onClick={requestLocation}
+                disabled={locationLoading}
+                className={`px-10 py-4 ${userLocation ? 'bg-green-600' : 'bg-[#29664c]'} text-white rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all mt-4 w-full flex items-center justify-center gap-2`}
+              >
+                {locationLoading ? <RefreshCcw className="w-5 h-5 animate-spin" /> : <MapPin className="w-5 h-5" />}
+                {userLocation ? `Location Acquired: ${userLocation}` : "Detect My Live Location"}
               </button>
             </div>
           </section>

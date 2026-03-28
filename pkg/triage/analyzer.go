@@ -101,6 +101,7 @@ CRITICAL REASONING:
 2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
 3. If the primary hospital (Emergency Room at Hospital A) is full according to the News Feed, you MUST autonomously re-route the dispatch to the secondary facility and include this reasoning in the response.
 4. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+5. If the Input contains '[Live User Location: <coords>]', you MUST extract those exact coordinates and put them into the 'location' field.
 
 Extract the following information from the input and return ONLY a valid JSON object matching this schema:
 {"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB, News Ticker"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
@@ -133,7 +134,12 @@ func heuristicFallback(input string) *RescuePlan {
 	}
 
 	location := "Unknown Location"
-	if strings.Contains(lowerInput, "sector 7") {
+	if idx := strings.Index(input, "[Live User Location:"); idx != -1 {
+		endIdx := strings.Index(input[idx:], "]")
+		if endIdx != -1 {
+			location = strings.TrimSpace(input[idx+20 : idx+endIdx])
+		}
+	} else if strings.Contains(lowerInput, "sector 7") {
 		location = "Sector 7"
 	}
 
@@ -224,6 +230,7 @@ CRITICAL REASONING:
 2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
 3. If the primary hospital (Emergency Room at Hospital A) is full according to the News Feed, you MUST autonomously re-route the dispatch to the secondary facility and include this reasoning in the response.
 4. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+5. If the Input contains '[Live User Location: <coords>]', you MUST extract those exact coordinates and put them into the 'location' field.
 
 Return ONLY a valid JSON object matching this schema:
 {"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, News Ticker"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`

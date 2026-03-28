@@ -39,6 +39,26 @@ func TestHandleLogin(t *testing.T) {
 	}
 }
 
+// unit_test for HandleGoogleLogin
+func TestHandleGoogleLogin(t *testing.T) {
+	router := prepareRouter()
+
+	reqPayload := map[string]string{
+		"token": "mock-oauth-token-12345",
+	}
+	jsonVal, _ := json.Marshal(reqPayload)
+
+	req, _ := http.NewRequest("POST", "/api/v1/auth/google", bytes.NewBuffer(jsonVal))
+	req.Header.Set("Content-Type", "application/json")
+
+	w := httptest.NewRecorder()
+	router.ServeHTTP(w, req)
+
+	if w.Code != http.StatusOK {
+		t.Errorf("Expected status OK, got %v", w.Code)
+	}
+}
+
 // unit_test for HandleTriage
 func TestHandleTriage(t *testing.T) {
 	router := prepareRouter()
