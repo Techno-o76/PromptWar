@@ -57,7 +57,7 @@ export default function SafetyGuardianHub() {
     <div className="bg-[#f7f7f2] min-h-screen flex text-[#2d2f2c] overflow-hidden">
       
       {/* Sidebar Navigation */}
-      <aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] dark:bg-[#1a1c1a] z-40 border-r border-[#e8e9e3]">
+      <aside className="hidden md:flex flex-col py-10 gap-2 h-screen w-72 rounded-r-[3rem] sticky left-0 top-0 bg-[#f7f7f2] z-40 border-r border-[#e8e9e3] shadow-[0_20px_40px_rgba(45,47,44,0.06)]">
         <div className="px-8 mb-10">
           <h1 className="text-xl font-bold text-[#29664c] tracking-tight">NEXUS Bridge</h1>
           <p className="text-xs text-[#5a5c58] opacity-70 mt-1">Societal Benefit Intel</p>

@@ -87,21 +87,21 @@ export default function DataIngestion() {
     <div className="bg-[#f7f7f2] min-h-screen flex text-[#2d2f2c] overflow-hidden">
       
 
-<aside className="hidden md:flex flex-col h-screen w-72 rounded-r-[3rem] border-r-0 bg-[#f7f7f2] dark:bg-stone-900 shadow-[0_20px_40px_rgba(45,47,44,0.06)] py-8 gap-2 sticky top-0">
+<aside className="hidden md:flex flex-col h-screen w-72 rounded-r-[3rem] border-r-0 bg-[#f7f7f2] shadow-[0_20px_40px_rgba(45,47,44,0.06)] py-8 gap-2 sticky top-0">
 <div className="px-8 mb-8">
 <div className="flex items-center gap-3">
 <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
 <span className="material-symbols-outlined" >shield_with_heart</span>
 </div>
 <div>
-<h2 className="text-lg font-bold text-[#2d2f2c] dark:text-stone-100 font-headline leading-tight">Safety Guardian</h2>
+<h2 className="text-lg font-bold text-[#2d2f2c] font-headline leading-tight">Safety Guardian</h2>
 <p className="text-xs text-stone-500 font-medium">Community Support</p>
 </div>
 </div>
 </div>
 <nav className="flex-1 flex flex-col gap-2">
 
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span>Guardian Hub</span>
 </Link>
@@ -111,17 +111,17 @@ export default function DataIngestion() {
 <span>Data Ingestion</span>
 </Link>
 
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span>Support Flow</span>
 </Link>
 
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span>History</span>
 </Link>
 
-<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
 <span className="material-symbols-outlined">library_books</span>
 <span>Resources</span>
 </Link>
@@ -132,11 +132,11 @@ export default function DataIngestion() {
             </button>
 </div>
 <div className="mt-6 flex flex-col gap-1">
-<a aria-label="Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">help</span>
 <span>Help Center</span>
 </a>
-<a aria-label="Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">logout</span>
 <span>Logout</span>
 </a>
@@ -144,9 +144,9 @@ export default function DataIngestion() {
 </aside>
 <main className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
 
-<header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2] dark:bg-stone-900 sticky top-0 z-10">
+<header className="flex justify-between items-center w-full px-8 py-4 bg-[#f7f7f2] sticky top-0 z-10">
 <div className="flex items-center gap-4">
-<h1 className="text-xl font-extrabold text-[#29664c] dark:text-[#b9f9d6] font-headline tracking-tight">Safety Guardian Hub</h1>
+<h1 className="text-xl font-extrabold text-[#29664c] font-headline tracking-tight">Safety Guardian Hub</h1>
 </div>
 <div className="flex items-center gap-6">
 <div className="hidden md:flex items-center gap-2 px-4 py-1.5 bg-primary-container/30 rounded-full">
