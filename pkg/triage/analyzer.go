@@ -64,9 +64,30 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 	model := client.GenerativeModel("gemini-1.5-pro") // Using available advanced model
 	model.ResponseMIMEType = "application/json"
 	
-	sysPrompt := `You are an expert Crisis Intelligence Bridge agent.
-CURRENT ENVIRONMENT: Weather is Torrential Rain; Traffic is Heavy Gridlock on Highway 1.
-IMPORTANT REASONING: You MUST autonomously modify your Rescue Plan based on this contextual environment. For example, if roads are flooded, suggest alternative transport like boats or rerouting.
+	sysPrompt := `You are the NEXUS Crisis Agent. Use the user's Input PLUS the Live Environment Context provided below.
+
+1. The Environment Data (Simulation)
+{
+  "live_environment_context": {
+    "weather": {
+      "condition": "Severe Thunderstorm",
+      "visibility": "Low (< 500m)",
+      "flood_risk": "High in Zone 7 & 12"
+    },
+    "urban_mobility": {
+      "traffic_status": "Gridlock on MG Road & Residency Rd",
+      "metro_status": "Operational - High Frequency",
+      "emergency_corridors": "Green-lit on North-South Axis"
+    },
+    "news_ticker": "Local Power Grid fluctuates in Sector 4; Hospital Backup Generators Active."
+  }
+}
+
+CRITICAL REASONING:
+1. If the 'Action Required' involves transport, you MUST cross-reference it with Traffic/Weather.
+2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
+3. Add a "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+
 Extract the following information from the input and return ONLY a valid JSON object matching this schema:
 {"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
@@ -152,16 +173,33 @@ func AnalyzeMultimodalInput(ctx context.Context, mimeType string, fileData []byt
 	model := client.GenerativeModel("gemini-1.5-pro")
 	model.ResponseMIMEType = "application/json"
 
-	sysPrompt := `You are the NEXUS Crisis Agent. I am providing you with a messy input (Text or Image). If it is an image of a medical record, OCR it, analyze the handwritten notes, and extract the 'Structured Rescue Plan' JSON. Explicitly look for conflicts between the 'Messy Photo' and 'Human Intent'.
-`
+	sysPrompt := `You are the NEXUS Crisis Agent. Use the attached Media/Intent PLUS the Live Environment Context provided below.
 
-	if simulateCtx {
-		sysPrompt += `CURRENT ENVIRONMENT: Weather is Torrential Rain; Traffic is Heavy Gridlock on Highway 1.
-IMPORTANT REASONING: You MUST autonomously modify your Rescue Plan based on this contextual environment. For example, if roads are flooded, suggest alternative transport like boats or rerouting.
-`
-	}
+1. The Environment Data (Simulation)
+{
+  "live_environment_context": {
+    "weather": {
+      "condition": "Severe Thunderstorm",
+      "visibility": "Low (< 500m)",
+      "flood_risk": "High in Zone 7 & 12"
+    },
+    "urban_mobility": {
+      "traffic_status": "Gridlock on MG Road & Residency Rd",
+      "metro_status": "Operational - High Frequency",
+      "emergency_corridors": "Green-lit on North-South Axis"
+    },
+    "news_ticker": "Local Power Grid fluctuates in Sector 4; Hospital Backup Generators Active."
+  }
+}
 
-	sysPrompt += `Return ONLY a valid JSON object matching this schema:
+If it is an image of a medical record, OCR it, analyze the handwritten notes, and extract the 'Structured Rescue Plan' JSON. Explicitly look for conflicts between the 'Messy Photo' and 'Human Intent'.
+
+CRITICAL REASONING:
+1. If the 'Action Required' involves transport, you MUST cross-reference it with Traffic/Weather.
+2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
+3. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+
+Return ONLY a valid JSON object matching this schema:
 {"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	parts := []genai.Part{

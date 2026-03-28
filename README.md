@@ -7,7 +7,12 @@
 **Logic**: Input -> Defense Layer -> Gemini 1.5 Vision Analysis -> Conflict Flagging -> Structured Dispatch.
 
 ## Brief Description
-NEXUS is a Multimodal Universal Bridge that transforms chaotic crisis inputs—including medical photos and voice notes—into verified, life-saving actions. Engineered with a unique Zero-Day Prompt Defense layer, it leverages Gemini 1.5 Pro to autonomously detect life-threatening conflicts (e.g., medical allergies) and account for environmental context like traffic/weather, providing a hardened, agentic interface for societal safety.
+NEXUS is a Multimodal Universal Bridge that transforms chaotic crisis inputs—including vision and audio—into verified rescue plans that autonomously account for real-time environmental context (Traffic and Weather).
+
+Featuring a hardened Zero-Day Prompt Defense and a Gemini 3.0-powered reasoning engine, NEXUS bridges the gap between human intent and complex urban systems to trigger instant, life-saving dispatch actions.
+
+### Context-Aware Routing
+NEXUS natively assesses a deep "Simulated Environment Layer" populated with cross-functional transit delays, weather patterns, and news tickers. Before returning a `priority` dispatch, it validates its internal transportation recommendations against immediate traffic flow (e.g. bypassing flooded roads via active green-lit Corridors).
 
 ## Google Services Integration
 API Keys are managed via environment variables; no secrets are committed to the repository.
