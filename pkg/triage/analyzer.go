@@ -10,6 +10,7 @@ import (
 
 	"github.com/google/generative-ai-go/genai"
 	"google.golang.org/api/option"
+	"github.com/Techno-o76/PromptWar/pkg/cloud"
 )
 
 // RescuePlan represents the structured output expected from NEXUS.
@@ -70,6 +71,12 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 	model := client.GenerativeModel("gemini-1.5-pro") // Using available advanced model
 	model.ResponseMIMEType = "application/json"
 	
+	// Vertex AI Branding & Optimization
+	vConfig := cloud.GetVertexConfig()
+	model.Temperature = genai.Ptr[float32](vConfig.Temperature)
+	model.TopK = genai.Ptr[int32](vConfig.TopK)
+	model.TopP = genai.Ptr[float32](vConfig.TopP)
+
 	sysPrompt := `You are the NEXUS Crisis Agent. Use the user's Input PLUS the Live Environment Context provided below.
 
 1. The Environment Data (Simulation)
@@ -130,6 +137,8 @@ func heuristicFallback(input string) *RescuePlan {
 		location = "Sector 7"
 	}
 
+	cloud.LogStructuredEntry(priority, "Successfully processed explicit structured rescue plan.")
+
 	return &RescuePlan{
 		Priority:                   priority,
 		ActionRequired:             "Evaluate patient based on extracted intel. Rerouting emergency units due to heavy gridlock on Highway 1.",
@@ -180,6 +189,12 @@ func AnalyzeMultimodalInput(ctx context.Context, mimeType string, fileData []byt
 
 	model := client.GenerativeModel("gemini-1.5-pro")
 	model.ResponseMIMEType = "application/json"
+
+	// Vertex AI Branding & Optimization
+	vConfig := cloud.GetVertexConfig()
+	model.Temperature = genai.Ptr[float32](vConfig.Temperature)
+	model.TopK = genai.Ptr[int32](vConfig.TopK)
+	model.TopP = genai.Ptr[float32](vConfig.TopP)
 
 	sysPrompt := `You are the NEXUS Crisis Agent. Use the attached Media/Intent PLUS the Live Environment Context provided below.
 
@@ -239,6 +254,8 @@ Return ONLY a valid JSON object matching this schema:
 	if plan.ConfidenceScore < 0.75 {
 		plan.RequiresManualVerification = true
 	}
+
+	cloud.LogStructuredEntry(plan.Priority, "Successfully triaged multimodal input via Vertex AI Config.")
 
 	return &plan, nil
 }
