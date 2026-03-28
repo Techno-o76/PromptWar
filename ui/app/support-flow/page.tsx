@@ -81,7 +81,7 @@ export default function SupportFlow() {
                         Orchestrate and monitor community support actions. Build response workflows and allocate resources to where they are needed most.
                     </p>
 </div>
-<button aria-label="Action" className="bg-primary text-white rounded-full px-8 py-4 font-bold flex items-center gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95">
+<button aria-label="Action" className="bg-[#29664c] text-white rounded-full px-8 py-4 font-bold flex items-center gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95">
 <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
                     New Support Action
                 </button>
@@ -128,11 +128,11 @@ export default function SupportFlow() {
                             </div>
 </div>
 <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
-<div className="h-full bg-primary w-[65%] rounded-full"></div>
+<div className="h-full bg-[#29664c] w-[65%] rounded-full"></div>
 </div>
 <div className="flex justify-between mt-3">
 <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">Progress</span>
-<span className="text-[10px] font-bold text-primary uppercase tracking-widest">65%</span>
+<span className="text-[10px] font-bold text-[#29664c] uppercase tracking-widest">65%</span>
 </div>
 </div>
 </div>
@@ -171,7 +171,7 @@ export default function SupportFlow() {
 <h4 className="text-2xl font-bold mb-2 font-['Plus_Jakarta_Sans']">Clean Water Supply</h4>
 <p className="text-stone-500 text-sm mb-8 leading-relaxed">Deployment of 3 portable filtration systems to the western zone completed and verified.</p>
 <div className="mt-auto">
-<div className="flex items-center gap-2 text-primary font-bold text-sm mb-4">
+<div className="flex items-center gap-2 text-[#29664c] font-bold text-sm mb-4">
 <span className="material-symbols-outlined" data-icon="verified" >verified</span>
                             Success Verified
                         </div>
@@ -181,7 +181,7 @@ export default function SupportFlow() {
 </div>
 </div>
 
-<div className="md:col-span-2 bg-gradient-to-br from-primary to-primary-dim rounded-xl p-10 flex flex-col md:flex-row shadow-[0_20px_40px_rgba(45,47,44,0.15)] text-white relative overflow-hidden">
+<div className="md:col-span-2 bg-gradient-to-br from-[#29664c] to-[#1b5a40] rounded-xl p-10 flex flex-col md:flex-row shadow-[0_20px_40px_rgba(45,47,44,0.15)] text-white relative overflow-hidden">
 <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
 <div className="relative z-10 md:w-1/2">
 <h4 className="text-3xl font-extrabold mb-4 font-['Plus_Jakarta_Sans'] tracking-tight">Active Impact Analysis</h4>
@@ -241,7 +241,7 @@ export default function SupportFlow() {
 </div>
 </div>
 </div>
-<button aria-label="Action" className="mt-8 text-primary font-bold text-xs flex items-center justify-center gap-1 hover:underline">
+<button aria-label="Action" className="mt-8 text-[#29664c] font-bold text-xs flex items-center justify-center gap-1 hover:underline">
                         View all activity <span className="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
 </button>
 </div>
@@ -254,11 +254,11 @@ export default function SupportFlow() {
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Hub</span>
 </Link>
-<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-primary" href="/support-flow">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-[#29664c]" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Support</span>
 </Link>
-<button aria-label="Action" className="w-14 h-14 -mt-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-surface">
+<button aria-label="Action" className="w-14 h-14 -mt-10 bg-[#29664c] text-white rounded-full flex items-center justify-center shadow-lg shadow-[#29664c]/30 border-4 border-[#f7f7f2]">
 <span className="material-symbols-outlined" data-icon="add">add</span>
 </button>
 <Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/history">

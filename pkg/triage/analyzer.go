@@ -14,16 +14,17 @@ import (
 
 // RescuePlan represents the structured output expected from NEXUS.
 type RescuePlan struct {
-	Priority                 string   `json:"priority"`
-	ActionRequired           string   `json:"action_required"`
-	Location                 string   `json:"location"`
-	VerifiedStatus           bool     `json:"verified_status"`
-	LifeThreateningConflict  string   `json:"life_threatening_conflict,omitempty"`
-	AutonomousDispatchSMS    string   `json:"autonomous_dispatch_sms,omitempty"`
-	VerificationCheck        []string `json:"verification_check,omitempty"`
-	DraftDispatchMessage     string   `json:"draft_dispatch_message,omitempty"`
-	ConfidenceScore          float64  `json:"confidence_score"`
-	MissingInfoRequests      []string `json:"missing_info_requests,omitempty"`
+	Priority                     string   `json:"priority"`
+	ActionRequired               string   `json:"action_required"`
+	Location                     string   `json:"location"`
+	VerifiedStatus               bool     `json:"verified_status"`
+	LifeThreateningConflict      string   `json:"life_threatening_conflict,omitempty"`
+	AutonomousDispatchSMS        string   `json:"autonomous_dispatch_sms,omitempty"`
+	VerificationCheck            []string `json:"verification_check,omitempty"`
+	DraftDispatchMessage         string   `json:"draft_dispatch_message,omitempty"`
+	ConfidenceScore              float64  `json:"confidence_score"`
+	RequiresManualVerification   bool     `json:"requires_manual_verification"`
+	MissingInfoRequests          []string `json:"missing_info_requests,omitempty"`
 }
 
 // AnalyzeMessyInput takes a sanitized prompt and converts it into a Structured Rescue Plan.
@@ -49,6 +50,11 @@ func AnalyzeMessyInput(ctx context.Context, sanitizedInput string) (*RescuePlan,
 
 	// Agentic Action: Autonomously flag life-threatening conflicts
 	flagConflicts(plan, sanitizedInput)
+	
+	// Human-in-the-loop: Responsible AI Guardrail
+	if plan.ConfidenceScore < 0.75 {
+		plan.RequiresManualVerification = true
+	}
 
 	return plan, nil
 }
@@ -86,10 +92,11 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 CRITICAL REASONING:
 1. If the 'Action Required' involves transport, you MUST cross-reference it with Traffic/Weather.
 2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
-3. Add a "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+3. If the primary hospital (Emergency Room at Hospital A) is full according to the News Feed, you MUST autonomously re-route the dispatch to the secondary facility and include this reasoning in the response.
+4. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
 
 Extract the following information from the input and return ONLY a valid JSON object matching this schema:
-{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB, News Ticker"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	resp, err := model.GenerateContent(ctx, genai.Text(sysPrompt+"\n\nInput:\n"+input))
 	if err != nil {
@@ -124,15 +131,16 @@ func heuristicFallback(input string) *RescuePlan {
 	}
 
 	return &RescuePlan{
-		Priority:              priority,
-		ActionRequired:        "Evaluate patient based on extracted intel. Rerouting emergency units due to heavy gridlock on Highway 1.",
-		Location:              location,
-		VerifiedStatus:        false,
-		AutonomousDispatchSMS: "NEXUS ALERT: Proceed to " + location + ". Heavy gridlock on Highway 1, use secondary access routes.",
-		VerificationCheck:     []string{"Simulated Traffic Feed", "Simulated Weather Layer"},
-		DraftDispatchMessage:  "URGENT DISPATCH: Patient evaluation needed at " + location + ". Avoid Highway 1 due to gridlock.",
-		ConfidenceScore:       0.85,
-		MissingInfoRequests:   []string{},
+		Priority:                   priority,
+		ActionRequired:             "Evaluate patient based on extracted intel. Rerouting emergency units due to heavy gridlock on Highway 1.",
+		Location:                   location,
+		VerifiedStatus:             false,
+		AutonomousDispatchSMS:      "NEXUS ALERT: Proceed to " + location + ". Heavy gridlock on Highway 1, use secondary access routes.",
+		VerificationCheck:          []string{"Simulated Traffic Feed", "Simulated Weather Layer"},
+		DraftDispatchMessage:       "URGENT DISPATCH: Patient evaluation needed at " + location + ". Avoid Highway 1 due to gridlock.",
+		ConfidenceScore:            0.85,
+		RequiresManualVerification: false,
+		MissingInfoRequests:        []string{},
 	}
 }
 
@@ -194,13 +202,16 @@ func AnalyzeMultimodalInput(ctx context.Context, mimeType string, fileData []byt
 
 If it is an image of a medical record, OCR it, analyze the handwritten notes, and extract the 'Structured Rescue Plan' JSON. Explicitly look for conflicts between the 'Messy Photo' and 'Human Intent'.
 
+If the input is Audio, analyze the speaker's tone and stress levels. If extreme panic is detected, set Priority to CRITICAL regardless of textual content. Identify background noises (e.g., sirens, water rushing) to add context to the Location field.
+
 CRITICAL REASONING:
 1. If the 'Action Required' involves transport, you MUST cross-reference it with Traffic/Weather.
 2. If the suggested road is 'Gridlocked' or 'Flooded', you must autonomously suggest an alternative (e.g., 'Utilize Metro Corridor' or 'Dispatch Air-Ambulance').
-3. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
+3. If the primary hospital (Emergency Room at Hospital A) is full according to the News Feed, you MUST autonomously re-route the dispatch to the secondary facility and include this reasoning in the response.
+4. Add an "autonomous_dispatch_sms" field to the JSON output containing a 160-character emergency alert for first responders.
 
 Return ONLY a valid JSON object matching this schema:
-{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, News Ticker"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	parts := []genai.Part{
 		genai.Text(sysPrompt + "\n\nHuman Intent:\n" + intent),
@@ -223,5 +234,11 @@ Return ONLY a valid JSON object matching this schema:
 	}
 
 	flagConflicts(&plan, intent)
+
+	// Human-in-the-loop: Responsible AI Guardrail
+	if plan.ConfidenceScore < 0.75 {
+		plan.RequiresManualVerification = true
+	}
+
 	return &plan, nil
 }

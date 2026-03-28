@@ -230,6 +230,17 @@ export default function SafetyGuardianHub() {
                       </div>
                     )}
 
+                    {/* Human-in-the-loop Flag */}
+                    {result.plan.requires_manual_verification && (
+                      <div className="bg-orange-500/10 border-l-4 border-orange-500 p-3 rounded flex items-start gap-3 w-full mt-2">
+                        <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-xs font-bold text-orange-600 uppercase tracking-widest">Human Review Required</p>
+                          <p className="text-sm text-orange-800 font-medium">Confidence score low. Manual sign-off required prior to orchestrating actions.</p>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="flex gap-4 items-start w-full">
                       <div className="bg-[#29664c] text-white p-2 rounded-full shrink-0">
                         <CheckCircle2 className="w-5 h-5" />
