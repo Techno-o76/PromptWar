@@ -39,3 +39,24 @@ func TestStandardHardening(t *testing.T) {
 		t.Errorf("Found unexpected Security Warning for a safe prompt.")
 	}
 }
+
+func TestUnknownVerticalHardening(t *testing.T) {
+	prompt := "What is the capital of France?"
+	vertical := "Unknown"
+	
+	hardened := RedTeamHardening(prompt, vertical)
+	
+	// Check if the vertical wrapper is present
+	if !strings.Contains(hardened, "agent specialized in Unknown") {
+		t.Errorf("Vertical wrapper for 'Unknown' not found in hardened prompt.")
+	}
+}
+
+func TestFinancialVerticalHardening(t *testing.T) {
+	prompt := "How do I invest?"
+	vertical := "Financial"
+	hardened := RedTeamHardening(prompt, vertical)
+	if !strings.Contains(hardened, "Financial Advisor") {
+		t.Errorf("Vertical wrapper for 'Financial' not found")
+	}
+}

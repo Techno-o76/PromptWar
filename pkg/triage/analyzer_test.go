@@ -2,6 +2,7 @@ package triage
 
 import (
 	"context"
+	"os"
 	"strings"
 	"testing"
 )
@@ -87,4 +88,38 @@ func TestAnalyzeMultimodalInputFallback(t *testing.T) {
 	if plan.Priority != "CRITICAL HIGH" {
 		t.Errorf("Expected priority to auto-escalate due to allergy in intent, got: %s", plan.Priority)
 	}
+}
+
+func TestCallGeminiSDKInvalidKey(t *testing.T) {
+    ctx := context.Background()
+    _, err := callGeminiSDK(ctx, "invalid_key", "test")
+    if err == nil {
+        t.Errorf("Expected error with invalid API key")
+    }
+}
+
+
+
+func TestAnalyzeMessyInputWithKey(t *testing.T) {
+    os.Setenv("GEMINI_API_KEY", "invalid_key")
+    defer os.Unsetenv("GEMINI_API_KEY")
+    // It should fallback to heuristic since key is invalid/fails
+    plan, err := AnalyzeMessyInput(context.Background(), "Emergency sector 7")
+    if err != nil {
+        t.Errorf("Expected fallback to succeed, got error: %v", err)
+    }
+    if plan.Location != "Sector 7" {
+        t.Errorf("Expected Sector 7")
+    }
+}
+
+func TestAnalyzeMultimodalInputNoKey(t *testing.T) {
+    os.Setenv("GEMINI_API_KEY", "")
+    plan, err := AnalyzeMultimodalInput(context.Background(), "text/plain", []byte("test"), "some intent", false)
+    if err != nil {
+        t.Errorf("Expected fallback to succeed, got %v", err)
+    }
+    if !strings.Contains(plan.ActionRequired, "Evaluate patient") {
+        t.Errorf("Expected heuristic fallback outcome")
+    }
 }
