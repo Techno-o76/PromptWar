@@ -21,26 +21,26 @@ export default function HistoryLog() {
 </div>
 </div>
 <nav className="flex-1 space-y-1">
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
-</a>
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
-</a>
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
-</a>
-<a className="bg-primary text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-300 shadow-md" href="#">
+</Link>
+<Link className="bg-primary text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-300 shadow-md" href="/history">
 <span className="material-symbols-outlined" data-icon="history" >history</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
-</a>
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Resources</span>
-</a>
+</Link>
 </nav>
 <div className="mt-auto px-4 space-y-1">
 <a className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
@@ -126,7 +126,7 @@ export default function HistoryLog() {
 <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Activity Type</p>
 <div className="space-y-2">
 <label className="flex items-center gap-3 cursor-pointer group">
-<input checked="" className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
+<input defaultChecked className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
 <span className="text-sm text-on-surface group-hover:text-primary transition-colors">All Activities</span>
 </label>
 <label className="flex items-center gap-3 cursor-pointer group">
@@ -329,26 +329,26 @@ export default function HistoryLog() {
 </div>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl flex justify-around items-center py-4 px-2 z-50 border-t border-outline-variant/10">
-<button className="flex flex-col items-center gap-1 text-stone-500">
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-stone-500">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span className="text-[10px] font-bold">Data</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-primary">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-primary" href="/history">
 <span className="material-symbols-outlined" data-icon="history" >history</span>
 <span className="text-[10px] font-bold">History</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-stone-500">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
 <span className="text-[10px] font-bold">Support</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-stone-500">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
 <span className="material-symbols-outlined" data-icon="settings">settings</span>
 <span className="text-[10px] font-bold">Menu</span>
-</button>
+</Link>
 </nav>
 
     </div>

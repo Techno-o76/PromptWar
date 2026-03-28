@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { 
   Shield, Database, HeartHandshake, History, LibraryBig, Siren, 
   Bell, LineChart, RefreshCcw, TrafficCone, Thermometer, Newspaper, Radio, 
@@ -63,7 +64,7 @@ export default function SafetyGuardianHub() {
         
         <nav className="flex flex-col gap-2">
           {NAV_ITEMS.map((item) => (
-            <a 
+            <Link 
               key={item.name} 
               href={item.href} 
               className={item.active 
@@ -73,7 +74,7 @@ export default function SafetyGuardianHub() {
             >
               <item.icon className={`w-5 h-5 ${item.active ? 'fill-[#29664c]/20' : ''}`} />
               {item.name}
-            </a>
+            </Link>
           ))}
         </nav>
         
@@ -318,18 +319,18 @@ export default function SafetyGuardianHub() {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-[#e8e9e3] flex justify-around items-center z-50">
-        <a className="flex flex-col items-center gap-1 text-[#29664c]" href="#">
+        <Link className="flex flex-col items-center gap-1 text-[#29664c]" href="/">
           <Shield className="w-6 h-6 fill-[#29664c]/20" />
           <span className="text-[10px] font-bold">Hub</span>
-        </a>
-        <a className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="#">
+        </Link>
+        <Link className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/data-ingestion">
           <Database className="w-6 h-6" />
           <span className="text-[10px] font-bold">Data</span>
-        </a>
-        <a className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="#">
+        </Link>
+        <Link className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/support-flow">
           <HeartHandshake className="w-6 h-6" />
           <span className="text-[10px] font-bold">Support</span>
-        </a>
+        </Link>
       </nav>
     </div>
   );

@@ -21,30 +21,30 @@ export default function SupportFlow() {
 </div>
 <nav className="flex-1 flex flex-col gap-2">
 
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span>Guardian Hub</span>
-</a>
+</Link>
 
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span>Data Ingestion</span>
-</a>
+</Link>
 
-<a className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-medium text-sm shadow-lg shadow-primary/20" href="#">
+<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-medium text-sm shadow-lg shadow-primary/20" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
 <span>Support Flow</span>
-</a>
+</Link>
 
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/history">
 <span className="material-symbols-outlined" data-icon="history">history</span>
 <span>History</span>
-</a>
+</Link>
 
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span>Resources</span>
-</a>
+</Link>
 </nav>
 <div className="px-8 mt-auto pt-6 flex flex-col gap-6">
 <button className="bg-secondary-container text-on-secondary-container rounded-full py-4 px-6 font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[0.98] transition-transform">
@@ -268,25 +268,25 @@ export default function SupportFlow() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest glass-card flex justify-around items-center py-4 px-2 z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
-<button className="flex flex-col items-center gap-1 text-stone-400">
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Hub</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-primary">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-primary" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Support</span>
-</button>
+</Link>
 <button className="w-14 h-14 -mt-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-surface">
 <span className="material-symbols-outlined" data-icon="add">add</span>
 </button>
-<button className="flex flex-col items-center gap-1 text-stone-400">
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/history">
 <span className="material-symbols-outlined" data-icon="history">history</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">History</span>
-</button>
-<button className="flex flex-col items-center gap-1 text-stone-400">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-400" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Docs</span>
-</button>
+</Link>
 </nav>
 
     </div>

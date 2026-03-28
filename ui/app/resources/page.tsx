@@ -18,27 +18,27 @@ export default function Resources() {
 </div>
 </div>
 <nav className="flex-1 space-y-1">
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
-</a>
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
 <span className="material-symbols-outlined">database</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
-</a>
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
-</a>
-<a className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="#">
+</Link>
+<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
-</a>
+</Link>
 
-<a className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all" href="#">
+<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all" href="/resources">
 <span className="material-symbols-outlined" >library_books</span>
 <span className="font-['Plus_Jakarta_Sans'] font-bold text-sm">Resources</span>
-</a>
+</Link>
 </nav>
 <div className="mt-auto pt-8 border-t border-[#e8e9e3] mx-6">
 <a className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
@@ -214,7 +214,7 @@ export default function Resources() {
 
 <section className="mt-20 bg-surface-container-high rounded-xl p-12 text-center relative overflow-hidden">
 <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-<svg className="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
 <circle className="text-primary" cx="10" cy="10" fill="currentColor" r="20"></circle>
 <circle className="text-secondary" cx="90" cy="80" fill="currentColor" r="30"></circle>
 </svg>
@@ -232,26 +232,26 @@ export default function Resources() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-outline-variant/10 flex justify-around items-center py-3 z-50">
-<a className="flex flex-col items-center gap-1 text-stone-500" href="#">
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/">
 <span className="material-symbols-outlined text-2xl">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-stone-500" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
 <span className="material-symbols-outlined text-2xl">volunteer_activism</span>
 <span className="text-[10px] font-bold">Support</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-primary" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-primary" href="/resources">
 <span className="material-symbols-outlined text-2xl" >library_books</span>
 <span className="text-[10px] font-bold">Resources</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-stone-500" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/history">
 <span className="material-symbols-outlined text-2xl">history</span>
 <span className="text-[10px] font-bold">History</span>
-</a>
-<a className="flex flex-col items-center gap-1 text-stone-500" href="#">
+</Link>
+<Link className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
 <span className="material-symbols-outlined text-2xl">settings</span>
 <span className="text-[10px] font-bold">Settings</span>
-</a>
+</Link>
 </nav>
 
     </div>
