@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { 
   Shield, Database, HeartHandshake, History, LibraryBig, Siren, 
   Bell, LineChart, RefreshCcw, TrafficCone, Thermometer, Newspaper, Radio, 
-  CheckCircle2, Hourglass, Info, Map, UploadCloud, AlertTriangle
+  CheckCircle2, Hourglass, Info, Map, UploadCloud, AlertTriangle, MessageSquare, ShieldCheck
 } from 'lucide-react';
 
 // Data extraction as per stitch-rules.md
@@ -248,7 +248,33 @@ export default function SafetyGuardianHub() {
                             {result.plan.location}
                           </span>
                         </div>
+                    </div>
+
+                    {/* New Verification Source Logic */}
+                    {result.plan.verification_check && result.plan.verification_check.length > 0 && (
+                      <div className="bg-white/60 p-3 rounded border border-[#e8e9e3] mt-2">
+                        <div className="flex items-center gap-2 mb-2">
+                          <ShieldCheck className="w-4 h-4 text-[#29664c]" />
+                          <p className="text-xs font-bold text-[#2d2f2c] uppercase tracking-widest">Verified Sources</p>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {result.plan.verification_check.map((src: string, idx: number) => (
+                            <span key={idx} className="px-2 py-1 bg-[#29664c]/10 text-[#29664c] text-[10px] font-bold rounded-full">{src}</span>
+                          ))}
+                        </div>
                       </div>
+                    )}
+
+                    {/* New Autonomous Dispatch SMS */}
+                    {result.plan.autonomous_dispatch_sms && (
+                      <div className="bg-[#fdd404]/10 border border-[#fdd404]/30 p-3 rounded mt-2 flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4 text-[#594a00]" />
+                          <p className="text-xs font-bold text-[#594a00] uppercase tracking-widest">Auto-Dispatch Readiness</p>
+                        </div>
+                        <p className="text-sm text-[#594a00]/90 italic border-l-2 border-[#594a00]/30 pl-2">"{result.plan.autonomous_dispatch_sms}"</p>
+                      </div>
+                    )}
                     </div>
                   </div>
                 )}

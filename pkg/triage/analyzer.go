@@ -19,6 +19,8 @@ type RescuePlan struct {
 	Location                 string   `json:"location"`
 	VerifiedStatus           bool     `json:"verified_status"`
 	LifeThreateningConflict  string   `json:"life_threatening_conflict,omitempty"`
+	AutonomousDispatchSMS    string   `json:"autonomous_dispatch_sms,omitempty"`
+	VerificationCheck        []string `json:"verification_check,omitempty"`
 	DraftDispatchMessage     string   `json:"draft_dispatch_message,omitempty"`
 	ConfidenceScore          float64  `json:"confidence_score"`
 	MissingInfoRequests      []string `json:"missing_info_requests,omitempty"`
@@ -63,9 +65,10 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 	model.ResponseMIMEType = "application/json"
 	
 	sysPrompt := `You are an expert Crisis Intelligence Bridge agent.
-CURRENT ENVIRONMENT: Weather is Severe Flooding in North Sector. Traffic is Gridlocked on Residency Rd. (Consider this context when formulating the action_required routing).
+CURRENT ENVIRONMENT: Weather is Torrential Rain; Traffic is Heavy Gridlock on Highway 1.
+IMPORTANT REASONING: You MUST autonomously modify your Rescue Plan based on this contextual environment. For example, if roads are flooded, suggest alternative transport like boats or rerouting.
 Extract the following information from the input and return ONLY a valid JSON object matching this schema:
-{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "draft_dispatch_message": "string (Ready-to-send SMS/Email to first responder)", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	resp, err := model.GenerateContent(ctx, genai.Text(sysPrompt+"\n\nInput:\n"+input))
 	if err != nil {
@@ -100,13 +103,15 @@ func heuristicFallback(input string) *RescuePlan {
 	}
 
 	return &RescuePlan{
-		Priority:             priority,
-		ActionRequired:       "Evaluate patient based on extracted intel. Rerouting via Metro corridor due to Residency Rd gridlock.",
-		Location:             location,
-		VerifiedStatus:       false,
-		DraftDispatchMessage: "URGENT DISPATCH: Patient evaluation needed at " + location + ". Avoid Residency Rd due to severe flooding.",
-		ConfidenceScore:      0.85,
-		MissingInfoRequests:  []string{},
+		Priority:              priority,
+		ActionRequired:        "Evaluate patient based on extracted intel. Rerouting emergency units due to heavy gridlock on Highway 1.",
+		Location:              location,
+		VerifiedStatus:        false,
+		AutonomousDispatchSMS: "NEXUS ALERT: Proceed to " + location + ". Heavy gridlock on Highway 1, use secondary access routes.",
+		VerificationCheck:     []string{"Simulated Traffic Feed", "Simulated Weather Layer"},
+		DraftDispatchMessage:  "URGENT DISPATCH: Patient evaluation needed at " + location + ". Avoid Highway 1 due to gridlock.",
+		ConfidenceScore:       0.85,
+		MissingInfoRequests:   []string{},
 	}
 }
 
@@ -151,12 +156,13 @@ func AnalyzeMultimodalInput(ctx context.Context, mimeType string, fileData []byt
 `
 
 	if simulateCtx {
-		sysPrompt += `CURRENT ENVIRONMENT: Weather is Severe Flooding in North Sector. Traffic is Gridlocked on Residency Rd. (Consider this context when formulating the action_required routing).
+		sysPrompt += `CURRENT ENVIRONMENT: Weather is Torrential Rain; Traffic is Heavy Gridlock on Highway 1.
+IMPORTANT REASONING: You MUST autonomously modify your Rescue Plan based on this contextual environment. For example, if roads are flooded, suggest alternative transport like boats or rerouting.
 `
 	}
 
 	sysPrompt += `Return ONLY a valid JSON object matching this schema:
-{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "draft_dispatch_message": "string (Ready-to-send SMS/Email to first responder)", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
+{"priority": "High|Medium|Low", "action_required": "string", "location": "string", "verified_status": boolean, "life_threatening_conflict": "string", "autonomous_dispatch_sms": "string (Ready-to-send SMS template)", "verification_check": ["List of sources consulted, e.g. Traffic, Weather, Medical DB"], "draft_dispatch_message": "string", "confidence_score": float (0.0 to 1.0), "missing_info_requests": ["list", "of", "missing", "data"]}`
 
 	parts := []genai.Part{
 		genai.Text(sysPrompt + "\n\nHuman Intent:\n" + intent),
