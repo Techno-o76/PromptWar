@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/Techno-o76/PromptWar/internal/api"
@@ -26,5 +27,9 @@ func main() {
 	// API routes
 	api.RegisterRoutes(r)
 	
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	r.Run(":" + port)
 }

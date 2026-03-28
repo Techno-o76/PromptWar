@@ -17,7 +17,7 @@ export default function SafetyGuardianLogin() {
     setError('');
 
     try {
-      const resp = await fetch('http://localhost:8080/api/v1/login', {
+      const resp = await fetch('/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

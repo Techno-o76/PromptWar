@@ -35,7 +35,7 @@ export default function SafetyGuardianHub() {
     setError("");
     setResult(null);
     try {
-      const resp = await fetch("http://localhost:8080/api/v1/triage", {
+      const resp = await fetch("/api/v1/triage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt })
