@@ -9,11 +9,11 @@ import {
 
 // Data extraction as per stitch-rules.md
 const NAV_ITEMS = [
-  { name: 'Guardian Hub', icon: Shield, active: true },
-  { name: 'Data Ingestion', icon: Database, active: false },
-  { name: 'Support Flow', icon: HeartHandshake, active: false },
-  { name: 'History', icon: History, active: false },
-  { name: 'Resources', icon: LibraryBig, active: false },
+  { name: 'Guardian Hub', icon: Shield, active: true, href: '/' },
+  { name: 'Data Ingestion', icon: Database, active: false, href: '/data-ingestion' },
+  { name: 'Support Flow', icon: HeartHandshake, active: false, href: '/support-flow' },
+  { name: 'History', icon: History, active: false, href: '/history' },
+  { name: 'Resources', icon: LibraryBig, active: false, href: '/resources' },
 ];
 
 const SIGNALS = [
@@ -65,7 +65,7 @@ export default function SafetyGuardianHub() {
           {NAV_ITEMS.map((item) => (
             <a 
               key={item.name} 
-              href="#" 
+              href={item.href} 
               className={item.active 
                 ? "bg-[#b9f9d6] text-[#29664c] rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-medium transition-all duration-300"
                 : "text-[#2d2f2c] opacity-70 mx-4 px-6 py-3 flex items-center gap-3 font-medium hover:bg-[#e8e9e3] rounded-full transition-all"
