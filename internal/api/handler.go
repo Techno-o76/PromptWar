@@ -11,7 +11,7 @@ import (
 
 // HandleLogin processes authentication
 func HandleLogin(c *gin.Context) {
-	// Security: Implementing autonomous prompt red-teaming and input sanitization.
+	// Security: Validated input via JSON binding
 	var req struct {
 		Email    string `json:"email" binding:"required"`
 		Password string `json:"password" binding:"required"`
@@ -30,7 +30,7 @@ func HandleLogin(c *gin.Context) {
 
 // HandlePromptDefense processes a prompt and applies autonomous red-teaming.
 func HandlePromptDefense(c *gin.Context) {
-	// Security: Implementing autonomous prompt red-teaming and input sanitization.
+	// Security: Validated input via JSON binding
 	var request struct {
 		Prompt string `json:"prompt" binding:"required"`
 		Vertical string `json:"vertical" binding:"required"`
@@ -83,7 +83,7 @@ func HandleTriage(c *gin.Context) {
 
 // HandleDataIngestion processes multimodal file uploads and intent.
 func HandleDataIngestion(c *gin.Context) {
-	// Security: Implementing autonomous prompt red-teaming and input sanitization.
+	// Security: Validated input via MultipartForm
 	err := c.Request.ParseMultipartForm(500 << 20) // 500 MB limit
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse multipart form"})

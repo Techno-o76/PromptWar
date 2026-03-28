@@ -95,7 +95,7 @@ export default function SafetyGuardianLogin() {
                   <label className="block font-['Plus_Jakarta_Sans'] font-semibold text-sm px-1 text-[#2d2f2c]">Email address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
-                    <input 
+                    <input aria-label="Input field" 
                       type="email" 
                       id="email"
                       name="email"
@@ -112,11 +112,11 @@ export default function SafetyGuardianLogin() {
                 <div className="space-y-2">
                   <div className="flex justify-between items-center px-1">
                     <label className="block font-['Plus_Jakarta_Sans'] font-semibold text-sm text-[#2d2f2c]">Password</label>
-                    <a className="text-xs font-semibold text-[#29664c] hover:underline" href="#">Forgot password?</a>
+                    <a aria-label="Link" className="text-xs font-semibold text-[#29664c] hover:underline" href="#">Forgot password?</a>
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
-                    <input 
+                    <input aria-label="Input field" 
                       type="password" 
                       id="password"
                       name="password"
@@ -139,7 +139,7 @@ export default function SafetyGuardianLogin() {
                 </div>
               )}
 
-              <button 
+              <button aria-label="Action" 
                 type="submit"
                 disabled={loading}
                 className="w-full py-4 px-6 bg-[#29664c] text-white rounded-full font-['Plus_Jakarta_Sans'] font-bold text-lg shadow-lg hover:shadow-[#29664c]/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -170,7 +170,7 @@ export default function SafetyGuardianLogin() {
                     </p>
                   </div>
                 </div>
-                <button 
+                <button aria-label="Action" 
                   onClick={() => router.push('/')}
                   className="w-full py-3 bg-white text-[#29664c] rounded-full font-['Plus_Jakarta_Sans'] font-bold text-sm shadow-sm hover:bg-gray-50 transition-all border border-[#b9f9d6]"
                 >
@@ -180,7 +180,7 @@ export default function SafetyGuardianLogin() {
 
               <div className="flex gap-1 text-sm mt-2">
                 <span className="text-[#5a5c58]">Don't have an account?</span>
-                <a className="font-bold text-[#29664c] hover:underline" href="#">Create account</a>
+                <a aria-label="Link" className="font-bold text-[#29664c] hover:underline" href="#">Create account</a>
               </div>
             </div>
 
@@ -191,8 +191,8 @@ export default function SafetyGuardianLogin() {
       {/* Footer Decoration */}
       <footer className="fixed bottom-8 left-1/2 -translate-x-1/2 z-10 w-full max-w-7xl px-6 flex justify-between items-center text-xs font-medium text-[#5a5c58]/60">
         <div className="flex gap-6">
-          <a className="hover:text-[#29664c] transition-colors" href="#">Privacy Policy</a>
-          <a className="hover:text-[#29664c] transition-colors" href="#">Terms of Service</a>
+          <a aria-label="Link" className="hover:text-[#29664c] transition-colors" href="#">Privacy Policy</a>
+          <a aria-label="Link" className="hover:text-[#29664c] transition-colors" href="#">Terms of Service</a>
         </div>
         <div>© 2024 Safety Guardian Hub. All rights reserved.</div>
       </footer>

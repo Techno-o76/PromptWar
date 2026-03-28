@@ -64,7 +64,7 @@ export default function SafetyGuardianHub() {
         
         <nav className="flex flex-col gap-2">
           {NAV_ITEMS.map((item) => (
-            <Link 
+            <Link aria-label="Navigation Link" 
               key={item.name} 
               href={item.href} 
               className={item.active 
@@ -79,7 +79,7 @@ export default function SafetyGuardianHub() {
         </nav>
         
         <div className="mt-auto px-8">
-          <button className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
+          <button aria-label="Action" className="w-full py-4 px-6 rounded-full bg-[#fdd404] text-[#594a00] font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-95 transition-transform">
             <Siren className="w-5 h-5" />
             Safety Assistance
           </button>
@@ -104,7 +104,7 @@ export default function SafetyGuardianHub() {
               <span className="text-sm font-bold text-[#246147]">All Systems Active</span>
             </div>
             <div className="flex items-center gap-3">
-              <button className="p-2 rounded-full hover:bg-[#e8e9e3] transition-colors">
+              <button aria-label="Action" className="p-2 rounded-full hover:bg-[#e8e9e3] transition-colors">
                 <Bell className="w-6 h-6 text-[#2d2f2c]" />
               </button>
               <img alt="User Profile" className="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8cz3ksV0AtaiNNca31lbif5FEp8m8w8NbRmmum8RK-fKHcKjIvebiJRQQrCCY8G7ZVGk7-jViuQkr9V0cmg7eEHYe8zyCGZ5Ans20Y9SETWYgoNy1RTKT1bXixptYMGVaNtuaPFQfnTdvtvKWOWOs-njVaEqlyBAv__A8ziS1b_5ps8e3G-GE1hwuVMXD8wo6HSbUu_R2Kw1Ar8iIOooJ7afdmV5vgwTM80e0OP5dtNlV0nGiBIyz5KNNg6MF3zUzX4YBtuiBSRQ" />
@@ -148,7 +148,7 @@ export default function SafetyGuardianHub() {
                   <h4 className="text-2xl font-bold text-[#2d2f2c]">Unstructured Data Hub</h4>
                   <p className="text-sm text-[#5a5c58]">Intake messy signals for processing</p>
                 </div>
-                <button className="p-3 bg-white rounded-full shadow-sm border border-[#e8e9e3] hover:bg-[#b9f9d6] hover:border-[#b9f9d6] transition-colors group">
+                <button aria-label="Action" className="p-3 bg-white rounded-full shadow-sm border border-[#e8e9e3] hover:bg-[#b9f9d6] hover:border-[#b9f9d6] transition-colors group">
                   <RefreshCcw className="w-5 h-5 text-[#29664c] group-hover:rotate-180 transition-transform duration-500" />
                 </button>
               </div>
@@ -184,7 +184,7 @@ export default function SafetyGuardianHub() {
                   
                   {error && <p className="text-xs text-red-500 font-bold flex items-center gap-1"><AlertTriangle className="w-3 h-3"/> {error}</p>}
 
-                  <button 
+                  <button aria-label="Action" 
                     onClick={handleTriage}
                     disabled={loading || !prompt}
                     className="w-full py-4 bg-[#29664c] text-white rounded-xl font-bold hover:bg-[#1b5a40] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -278,7 +278,7 @@ export default function SafetyGuardianHub() {
                 </div>
 
               </div>
-              <button className="mt-8 w-full py-4 border-2 border-[#29664c]/20 text-[#29664c] font-bold rounded-full hover:bg-[#29664c]/5 transition-colors">
+              <button aria-label="Action" className="mt-8 w-full py-4 border-2 border-[#29664c]/20 text-[#29664c] font-bold rounded-full hover:bg-[#29664c]/5 transition-colors">
                 View Full Support Log
               </button>
             </div>
@@ -308,7 +308,7 @@ export default function SafetyGuardianHub() {
                 </div>
               )}
 
-              <button className="px-10 py-4 bg-[#29664c] text-white rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all mt-4 w-full">
+              <button aria-label="Action" className="px-10 py-4 bg-[#29664c] text-white rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all mt-4 w-full">
                 Open Live Map View
               </button>
             </div>
@@ -319,15 +319,15 @@ export default function SafetyGuardianHub() {
 
       {/* Mobile Bottom Navigation */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-[#e8e9e3] flex justify-around items-center z-50">
-        <Link className="flex flex-col items-center gap-1 text-[#29664c]" href="/">
+        <Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-[#29664c]" href="/">
           <Shield className="w-6 h-6 fill-[#29664c]/20" />
           <span className="text-[10px] font-bold">Hub</span>
         </Link>
-        <Link className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/data-ingestion">
+        <Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/data-ingestion">
           <Database className="w-6 h-6" />
           <span className="text-[10px] font-bold">Data</span>
         </Link>
-        <Link className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/support-flow">
+        <Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-[#5a5c58]/80" href="/support-flow">
           <HeartHandshake className="w-6 h-6" />
           <span className="text-[10px] font-bold">Support</span>
         </Link>

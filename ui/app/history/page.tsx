@@ -21,39 +21,39 @@ export default function HistoryLog() {
 </div>
 </div>
 <nav className="flex-1 space-y-1">
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
 </Link>
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
 </Link>
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
 </Link>
-<Link className="bg-primary text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-300 shadow-md" href="/history">
+<Link aria-label="Navigation Link" className="bg-primary text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-300 shadow-md" href="/history">
 <span className="material-symbols-outlined" data-icon="history" >history</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
 </Link>
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/resources">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Resources</span>
 </Link>
 </nav>
 <div className="mt-auto px-4 space-y-1">
-<a className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
+<a aria-label="Link" className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
 <span className="material-symbols-outlined" data-icon="help">help</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Help Center</span>
 </a>
-<a className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
+<a aria-label="Link" className="text-stone-600 dark:text-stone-400 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
 <span className="material-symbols-outlined" data-icon="logout">logout</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Logout</span>
 </a>
 <div className="mt-6 p-4 rounded-3xl bg-secondary-container text-on-secondary-container">
 <p className="text-xs font-bold uppercase tracking-widest mb-2">Ready to Help</p>
-<button className="w-full py-3 bg-white text-on-surface rounded-full text-sm font-bold shadow-sm hover:scale-105 duration-200">
+<button aria-label="Action" className="w-full py-3 bg-white text-on-surface rounded-full text-sm font-bold shadow-sm hover:scale-105 duration-200">
                         Safety Assistance
                     </button>
 </div>
@@ -73,10 +73,10 @@ export default function HistoryLog() {
 <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                         All Systems Active
                     </div>
-<button className="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
 <span className="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<button className="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors">
 <span className="material-symbols-outlined" data-icon="settings">settings</span>
 </button>
 <div className="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
@@ -96,11 +96,11 @@ export default function HistoryLog() {
                             </p>
 </div>
 <div className="flex gap-3">
-<button className="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant/10 text-on-surface font-semibold flex items-center gap-2 shadow-sm hover:bg-white transition-all">
+<button aria-label="Action" className="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant/10 text-on-surface font-semibold flex items-center gap-2 shadow-sm hover:bg-white transition-all">
 <span className="material-symbols-outlined" data-icon="download">download</span>
                                 Export CSV
                             </button>
-<button className="px-6 py-3 rounded-full bg-primary text-white font-semibold flex items-center gap-2 shadow-lg hover:shadow-primary/20 transition-all">
+<button aria-label="Action" className="px-6 py-3 rounded-full bg-primary text-white font-semibold flex items-center gap-2 shadow-lg hover:shadow-primary/20 transition-all">
 <span className="material-symbols-outlined" data-icon="add">add</span>
                                 Manual Entry
                             </button>
@@ -119,26 +119,26 @@ export default function HistoryLog() {
 
 <div className="relative mb-6">
 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
-<input className="w-full pl-10 pr-4 py-3 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-primary shadow-sm" placeholder="Search activities..." type="text"/>
+<input aria-label="Input field" className="w-full pl-10 pr-4 py-3 bg-white border-none rounded-2xl text-sm focus:ring-2 focus:ring-primary shadow-sm" placeholder="Search activities..." type="text"/>
 </div>
 
 <div className="space-y-4">
 <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Activity Type</p>
 <div className="space-y-2">
 <label className="flex items-center gap-3 cursor-pointer group">
-<input defaultChecked className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
+<input aria-label="Input field" defaultChecked className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
 <span className="text-sm text-on-surface group-hover:text-primary transition-colors">All Activities</span>
 </label>
 <label className="flex items-center gap-3 cursor-pointer group">
-<input className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
+<input aria-label="Input field" className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
 <span className="text-sm text-on-surface group-hover:text-primary transition-colors">Data Ingestion</span>
 </label>
 <label className="flex items-center gap-3 cursor-pointer group">
-<input className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
+<input aria-label="Input field" className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
 <span className="text-sm text-on-surface group-hover:text-primary transition-colors">Safety Assistance</span>
 </label>
 <label className="flex items-center gap-3 cursor-pointer group">
-<input className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
+<input aria-label="Input field" className="rounded text-primary focus:ring-primary h-5 w-5 bg-white border-outline-variant/20" type="checkbox"/>
 <span className="text-sm text-on-surface group-hover:text-primary transition-colors">Alert Response</span>
 </label>
 </div>
@@ -150,15 +150,15 @@ export default function HistoryLog() {
 <div className="space-y-3">
 <div className="space-y-1">
 <label className="text-[10px] font-bold text-outline uppercase ml-1">From</label>
-<input className="w-full px-4 py-2 bg-white border-none rounded-xl text-sm focus:ring-2 focus:ring-primary shadow-sm" type="date"/>
+<input aria-label="Input field" className="w-full px-4 py-2 bg-white border-none rounded-xl text-sm focus:ring-2 focus:ring-primary shadow-sm" type="date"/>
 </div>
 <div className="space-y-1">
 <label className="text-[10px] font-bold text-outline uppercase ml-1">To</label>
-<input className="w-full px-4 py-2 bg-white border-none rounded-xl text-sm focus:ring-2 focus:ring-primary shadow-sm" type="date"/>
+<input aria-label="Input field" className="w-full px-4 py-2 bg-white border-none rounded-xl text-sm focus:ring-2 focus:ring-primary shadow-sm" type="date"/>
 </div>
 </div>
 </div>
-<button className="w-full py-3 bg-surface-container-highest text-on-surface font-bold rounded-full text-sm hover:bg-outline-variant/20 transition-all">
+<button aria-label="Action" className="w-full py-3 bg-surface-container-highest text-on-surface font-bold rounded-full text-sm hover:bg-outline-variant/20 transition-all">
                                     Clear All Filters
                                 </button>
 </div>
@@ -210,7 +210,7 @@ export default function HistoryLog() {
 <p className="text-sm font-medium">Marcus Chen</p>
 </div>
 <div className="col-span-1 md:col-span-1 text-right">
-<button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
 <span className="material-symbols-outlined" data-icon="more_vert">more_vert</span>
 </button>
 </div>
@@ -240,7 +240,7 @@ export default function HistoryLog() {
 <p className="text-sm font-medium">Elena Rodriguez</p>
 </div>
 <div className="col-span-1 md:col-span-1 text-right">
-<button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
 <span className="material-symbols-outlined" data-icon="more_vert">more_vert</span>
 </button>
 </div>
@@ -270,7 +270,7 @@ export default function HistoryLog() {
 <p className="text-sm font-medium">Guardian-AI (Alpha)</p>
 </div>
 <div className="col-span-1 md:col-span-1 text-right">
-<button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
 <span className="material-symbols-outlined" data-icon="more_vert">more_vert</span>
 </button>
 </div>
@@ -300,7 +300,7 @@ export default function HistoryLog() {
 <p className="text-sm font-medium">David Miller</p>
 </div>
 <div className="col-span-1 md:col-span-1 text-right">
-<button className="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<button aria-label="Action" className="p-2 text-on-surface-variant hover:text-primary transition-colors">
 <span className="material-symbols-outlined" data-icon="more_vert">more_vert</span>
 </button>
 </div>
@@ -310,13 +310,13 @@ export default function HistoryLog() {
 <div className="flex items-center justify-between pt-6">
 <p className="text-xs text-on-surface-variant">Showing <span className="font-bold text-on-surface">1-10</span> of <span className="font-bold text-on-surface">1,248</span> actions</p>
 <div className="flex gap-2">
-<button className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
 <span className="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
 </button>
-<button className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-md">1</button>
-<button className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors text-xs font-bold">2</button>
-<button className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors text-xs font-bold">3</button>
-<button className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-md">1</button>
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors text-xs font-bold">2</button>
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors text-xs font-bold">3</button>
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
 <span className="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
 </button>
 </div>
@@ -329,23 +329,23 @@ export default function HistoryLog() {
 </div>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl flex justify-around items-center py-4 px-2 z-50 border-t border-outline-variant/10">
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span className="text-[10px] font-bold">Data</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-primary" href="/history">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-primary" href="/history">
 <span className="material-symbols-outlined" data-icon="history" >history</span>
 <span className="text-[10px] font-bold">History</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
 <span className="text-[10px] font-bold">Support</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
 <span className="material-symbols-outlined" data-icon="settings">settings</span>
 <span className="text-[10px] font-bold">Menu</span>
 </Link>

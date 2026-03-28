@@ -13,7 +13,7 @@ NEXUS is a Multimodal Universal Bridge that transforms chaotic crisis inputs—i
 API Keys are managed via environment variables; no secrets are committed to the repository.
 
 NEXUS natively integrates the following Google Services:
-- **Gemini 1.5 Pro (Vision)**: Used to dynamically OCR medical photos, transcribe voice notes, analyze unstructured JSON, and apply autonomous Zero-Day Prompt Defense.
+- **Gemini 3.0 SDK**: Used to dynamically OCR medical photos, transcribe voice notes, analyze unstructured JSON, and apply autonomous Zero-Day Prompt Defense.
 - **Google Maps Static API**: Dynamic location visualizations mapped via custom placeholders to mock Maps Static URLs for situational awareness.
 
 ## Multimodal Universal Ingestion

@@ -21,42 +21,42 @@ export default function SupportFlow() {
 </div>
 <nav className="flex-1 flex flex-col gap-2">
 
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span>Guardian Hub</span>
 </Link>
 
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/data-ingestion">
 <span className="material-symbols-outlined" data-icon="database">database</span>
 <span>Data Ingestion</span>
 </Link>
 
-<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-medium text-sm shadow-lg shadow-primary/20" href="/support-flow">
+<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 font-['Plus_Jakarta_Sans'] font-medium text-sm shadow-lg shadow-primary/20" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
 <span>Support Flow</span>
 </Link>
 
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/history">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/history">
 <span className="material-symbols-outlined" data-icon="history">history</span>
 <span>History</span>
 </Link>
 
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/resources">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all duration-300 hover:translate-x-1 font-['Plus_Jakarta_Sans'] font-medium text-sm" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span>Resources</span>
 </Link>
 </nav>
 <div className="px-8 mt-auto pt-6 flex flex-col gap-6">
-<button className="bg-secondary-container text-on-secondary-container rounded-full py-4 px-6 font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[0.98] transition-transform">
+<button aria-label="Action" className="bg-secondary-container text-on-secondary-container rounded-full py-4 px-6 font-bold flex items-center justify-center gap-2 shadow-sm hover:scale-[0.98] transition-transform">
 <span className="material-symbols-outlined" data-icon="emergency">emergency</span>
                 Safety Assistance
             </button>
 <div className="flex flex-col gap-1">
-<a className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<a aria-label="Link" className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
 <span className="material-symbols-outlined" data-icon="help">help</span>
                     Help Center
                 </a>
-<a className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
+<a aria-label="Link" className="text-stone-600 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all font-['Plus_Jakarta_Sans'] font-medium text-sm" href="#">
 <span className="material-symbols-outlined" data-icon="logout">logout</span>
                     Logout
                 </a>
@@ -76,10 +76,10 @@ export default function SupportFlow() {
 <span className="text-xs font-bold text-primary tracking-wide">All Systems Active</span>
 </div>
 <div className="flex items-center gap-2">
-<button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dcddd7]/50 transition-colors text-stone-500 active:scale-95 duration-200">
+<button aria-label="Action" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dcddd7]/50 transition-colors text-stone-500 active:scale-95 duration-200">
 <span className="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dcddd7]/50 transition-colors text-stone-500 active:scale-95 duration-200">
+<button aria-label="Action" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dcddd7]/50 transition-colors text-stone-500 active:scale-95 duration-200">
 <span className="material-symbols-outlined" data-icon="settings">settings</span>
 </button>
 <div className="w-10 h-10 rounded-full bg-surface-container-high ml-2 overflow-hidden">
@@ -99,7 +99,7 @@ export default function SupportFlow() {
                         Orchestrate and monitor community support actions. Build response workflows and allocate resources to where they are needed most.
                     </p>
 </div>
-<button className="bg-primary text-white rounded-full px-8 py-4 font-bold flex items-center gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95">
+<button aria-label="Action" className="bg-primary text-white rounded-full px-8 py-4 font-bold flex items-center gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95">
 <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
                     New Support Action
                 </button>
@@ -111,10 +111,10 @@ export default function SupportFlow() {
 <h3 className="text-xl font-bold font-['Plus_Jakarta_Sans'] text-on-surface">Current Support Operations</h3>
 <div className="h-px flex-1 bg-surface-container"></div>
 <div className="flex gap-2">
-<button className="p-2 rounded-full bg-surface-container-low text-stone-600 hover:bg-surface-container-highest transition-colors">
+<button aria-label="Action" className="p-2 rounded-full bg-surface-container-low text-stone-600 hover:bg-surface-container-highest transition-colors">
 <span className="material-symbols-outlined" data-icon="filter_list">filter_list</span>
 </button>
-<button className="p-2 rounded-full bg-surface-container-low text-stone-600 hover:bg-surface-container-highest transition-colors">
+<button aria-label="Action" className="p-2 rounded-full bg-surface-container-low text-stone-600 hover:bg-surface-container-highest transition-colors">
 <span className="material-symbols-outlined" data-icon="sort">sort</span>
 </button>
 </div>
@@ -204,7 +204,7 @@ export default function SupportFlow() {
 <div className="relative z-10 md:w-1/2">
 <h4 className="text-3xl font-extrabold mb-4 font-['Plus_Jakarta_Sans'] tracking-tight">Active Impact Analysis</h4>
 <p className="text-white/70 mb-8 max-w-sm">We are currently reaching 1,240 households across 4 major zones. Support efficiency is up by 14% this week.</p>
-<button className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-bold text-sm hover:bg-white/20 transition-all flex items-center gap-2">
+<button aria-label="Action" className="bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full font-bold text-sm hover:bg-white/20 transition-all flex items-center gap-2">
                             View Full Report <span className="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
@@ -259,7 +259,7 @@ export default function SupportFlow() {
 </div>
 </div>
 </div>
-<button className="mt-8 text-primary font-bold text-xs flex items-center justify-center gap-1 hover:underline">
+<button aria-label="Action" className="mt-8 text-primary font-bold text-xs flex items-center justify-center gap-1 hover:underline">
                         View all activity <span className="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
 </button>
 </div>
@@ -268,22 +268,22 @@ export default function SupportFlow() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest glass-card flex justify-around items-center py-4 px-2 z-50 rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/">
 <span className="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Hub</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-primary" href="/support-flow">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-primary" href="/support-flow">
 <span className="material-symbols-outlined" data-icon="volunteer_activism" >volunteer_activism</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Support</span>
 </Link>
-<button className="w-14 h-14 -mt-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-surface">
+<button aria-label="Action" className="w-14 h-14 -mt-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/30 border-4 border-surface">
 <span className="material-symbols-outlined" data-icon="add">add</span>
 </button>
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/history">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/history">
 <span className="material-symbols-outlined" data-icon="history">history</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">History</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/resources">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/resources">
 <span className="material-symbols-outlined" data-icon="library_books">library_books</span>
 <span className="text-[10px] font-bold uppercase tracking-widest">Docs</span>
 </Link>

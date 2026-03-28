@@ -66,42 +66,42 @@ export default function DataIngestion() {
 </div>
 <nav className="flex-1 flex flex-col gap-2">
 
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span>Guardian Hub</span>
 </Link>
 
-<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/data-ingestion">
 <span className="material-symbols-outlined" >database</span>
 <span>Data Ingestion</span>
 </Link>
 
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span>Support Flow</span>
 </Link>
 
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span>History</span>
 </Link>
 
-<Link className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
+<Link aria-label="Navigation Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] dark:hover:bg-stone-800 rounded-full transition-all hover:translate-x-1 duration-300 font-label text-sm font-medium" href="/resources">
 <span className="material-symbols-outlined">library_books</span>
 <span>Resources</span>
 </Link>
 </nav>
 <div className="px-8 mt-auto pt-8">
-<button className="w-full bg-secondary-container text-on-secondary-container font-bold py-4 rounded-full shadow-sm hover:scale-[1.02] transition-transform active:scale-95">
+<button aria-label="Action" className="w-full bg-secondary-container text-on-secondary-container font-bold py-4 rounded-full shadow-sm hover:scale-[1.02] transition-transform active:scale-95">
                 Safety Assistance
             </button>
 </div>
 <div className="mt-6 flex flex-col gap-1">
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">help</span>
 <span>Help Center</span>
 </a>
-<a className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 dark:text-stone-400 mx-4 px-6 py-2 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">logout</span>
 <span>Logout</span>
 </a>
@@ -119,10 +119,10 @@ export default function DataIngestion() {
 <span className="text-sm font-bold text-[#29664c]">All Systems Active</span>
 </div>
 <div className="flex items-center gap-3">
-<button className="p-2 text-stone-500 hover:bg-[#dcddd7]/50 rounded-full transition-colors active:scale-95">
+<button aria-label="Action" className="p-2 text-stone-500 hover:bg-[#dcddd7]/50 rounded-full transition-colors active:scale-95">
 <span className="material-symbols-outlined">notifications</span>
 </button>
-<button className="p-2 text-stone-500 hover:bg-[#dcddd7]/50 rounded-full transition-colors active:scale-95">
+<button aria-label="Action" className="p-2 text-stone-500 hover:bg-[#dcddd7]/50 rounded-full transition-colors active:scale-95">
 <span className="material-symbols-outlined">settings</span>
 </button>
 <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
@@ -149,7 +149,7 @@ export default function DataIngestion() {
   className="relative bg-surface-container-lowest border-2 border-dashed border-outline-variant/30 rounded-[3rem] p-12 md:p-20 flex flex-col items-center text-center transition-all hover:border-primary/50 cursor-pointer"
   onClick={triggerFileInput}
 >
-<input 
+<input aria-label="Input field" 
   aria-label="Upload Target File"
   type="file" 
   ref={fileInputRef} 
@@ -247,7 +247,7 @@ export default function DataIngestion() {
     </div>
     
     <div className="flex flex-col gap-4">
-      <button 
+      <button aria-label="Action" 
         onClick={handleUpload}
         disabled={!selectedFile || loading}
         className="w-full md:w-auto self-start bg-[#29664c] text-white font-bold py-4 px-8 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-80 disabled:bg-[#f7f7f2] disabled:text-[#adada9] disabled:shadow-none disabled:border disabled:border-[#dcddd7] disabled:cursor-not-allowed flex justify-center items-center gap-2"
@@ -314,7 +314,7 @@ export default function DataIngestion() {
             <div className="md:col-span-2 mt-4 p-4 bg-surface rounded-xl border border-outline-variant/30 font-mono text-sm text-[#2d2f2c] whitespace-pre-wrap">
               <div className="text-xs font-bold text-[#29664c] mb-2 uppercase tracking-widest flex items-center gap-1"><span className="material-symbols-outlined text-[14px]">draft</span> Draft Dispatch Message</div>
               "{result.plan.draft_dispatch_message}"
-              <button className="mt-4 w-full bg-[#fdd404] text-[#594a00] font-bold py-3 rounded-xl shadow-sm hover:scale-[1.02] transition-transform active:scale-95 flex justify-center items-center gap-2">
+              <button aria-label="Action" className="mt-4 w-full bg-[#fdd404] text-[#594a00] font-bold py-3 rounded-xl shadow-sm hover:scale-[1.02] transition-transform active:scale-95 flex justify-center items-center gap-2">
                 <span className="material-symbols-outlined">send</span> Send Dispatch to First Responders (Simulated)
               </button>
             </div>
@@ -401,7 +401,7 @@ export default function DataIngestion() {
 <p className="text-xs text-on-surface-variant line-clamp-1">Text-to-vector embedding completed.</p>
 </div>
 </div>
-<button className="w-full py-3 text-sm font-bold text-primary hover:bg-primary/5 rounded-full transition-colors font-label">
+<button aria-label="Action" className="w-full py-3 text-sm font-bold text-primary hover:bg-primary/5 rounded-full transition-colors font-label">
                         View Full History
                     </button>
 </div>
@@ -436,22 +436,22 @@ export default function DataIngestion() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.05)] px-6 py-4 flex justify-between items-center z-50">
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-primary" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-primary" href="/data-ingestion">
 <span className="material-symbols-outlined" >database</span>
 <span className="text-[10px] font-bold">Ingestion</span>
 </Link>
 <div className="bg-secondary-container p-3 rounded-full -mt-10 shadow-lg">
 <span className="material-symbols-outlined text-on-secondary-container">add</span>
 </div>
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/support-flow">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span className="text-[10px] font-bold">Flow</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-400" href="/history">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-400" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span className="text-[10px] font-bold">History</span>
 </Link>

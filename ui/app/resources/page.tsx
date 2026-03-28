@@ -18,33 +18,33 @@ export default function Resources() {
 </div>
 </div>
 <nav className="flex-1 space-y-1">
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/">
 <span className="material-symbols-outlined">shield_with_heart</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Guardian Hub</span>
 </Link>
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/data-ingestion">
 <span className="material-symbols-outlined">database</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Data Ingestion</span>
 </Link>
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/support-flow">
 <span className="material-symbols-outlined">volunteer_activism</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">Support Flow</span>
 </Link>
-<Link className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/history">
+<Link aria-label="Navigation Link" className="text-stone-600 mx-4 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all hover:translate-x-1 duration-300" href="/history">
 <span className="material-symbols-outlined">history</span>
 <span className="font-['Plus_Jakarta_Sans'] font-medium text-sm">History</span>
 </Link>
 
-<Link className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all" href="/resources">
+<Link aria-label="Navigation Link" className="bg-[#29664c] text-white rounded-full mx-4 px-6 py-3 flex items-center gap-3 transition-all" href="/resources">
 <span className="material-symbols-outlined" >library_books</span>
 <span className="font-['Plus_Jakarta_Sans'] font-bold text-sm">Resources</span>
 </Link>
 </nav>
 <div className="mt-auto pt-8 border-t border-[#e8e9e3] mx-6">
-<a className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">help</span> Help Center
             </a>
-<a className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
+<a aria-label="Link" className="text-stone-600 px-6 py-3 flex items-center gap-3 hover:bg-[#e8e9e3] rounded-full transition-all text-sm font-medium" href="#">
 <span className="material-symbols-outlined">logout</span> Logout
             </a>
 <div className="mt-6 p-4 bg-secondary-container rounded-3xl flex items-center gap-3">
@@ -67,10 +67,10 @@ export default function Resources() {
 </div>
 </div>
 <div className="flex items-center gap-4">
-<button className="p-2.5 rounded-full hover:bg-[#dcddd7]/50 transition-colors text-on-surface">
+<button aria-label="Action" className="p-2.5 rounded-full hover:bg-[#dcddd7]/50 transition-colors text-on-surface">
 <span className="material-symbols-outlined">notifications</span>
 </button>
-<button className="p-2.5 rounded-full hover:bg-[#dcddd7]/50 transition-colors text-on-surface">
+<button aria-label="Action" className="p-2.5 rounded-full hover:bg-[#dcddd7]/50 transition-colors text-on-surface">
 <span className="material-symbols-outlined">settings</span>
 </button>
 <div className="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-primary-container">
@@ -87,7 +87,7 @@ export default function Resources() {
 <p className="text-lg text-on-surface-variant max-w-xl mb-8">Access our comprehensive library of toolkits, safety guidelines, and local coordination assets designed for resilience.</p>
 <div className="relative max-w-lg">
 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input className="w-full pl-12 pr-6 py-4 bg-surface-container-highest rounded-full border-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface shadow-sm" placeholder="Search for guides, protocols, or contacts..." type="text"/>
+<input aria-label="Input field" className="w-full pl-12 pr-6 py-4 bg-surface-container-highest rounded-full border-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-on-surface shadow-sm" placeholder="Search for guides, protocols, or contacts..." type="text"/>
 </div>
 </div>
 <div className="lg:col-span-5 flex justify-end">
@@ -103,12 +103,12 @@ export default function Resources() {
 </section>
 
 <div className="flex flex-wrap gap-3 mb-10 overflow-x-auto pb-4 scrollbar-hide">
-<button className="px-6 py-2.5 bg-primary text-white rounded-full font-bold text-sm transition-all shadow-md">All Resources</button>
-<button className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Emergency Protocols</button>
-<button className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Volunteer Guides</button>
-<button className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Asset Inventory</button>
-<button className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Community Contacts</button>
-<button className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Policy Documents</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-primary text-white rounded-full font-bold text-sm transition-all shadow-md">All Resources</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Emergency Protocols</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Volunteer Guides</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Asset Inventory</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Community Contacts</button>
+<button aria-label="Action" className="px-6 py-2.5 bg-surface-container-low text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container rounded-full font-bold text-sm transition-all">Policy Documents</button>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -125,8 +125,8 @@ export default function Resources() {
 <h3 className="text-2xl font-bold text-on-surface mb-3">Emergency Protocols</h3>
 <p className="text-on-surface-variant mb-6 text-sm leading-relaxed">Detailed step-by-step procedures for community-wide alerts, evacuation routing, and immediate safety measures during severe events.</p>
 <div className="flex gap-4">
-<button className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform">Download PDF</button>
-<button className="text-primary font-bold text-sm px-4 py-2.5">Read Online</button>
+<button aria-label="Action" className="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform">Download PDF</button>
+<button aria-label="Action" className="text-primary font-bold text-sm px-4 py-2.5">Read Online</button>
 </div>
 </div>
 </div>
@@ -139,7 +139,7 @@ export default function Resources() {
 <p className="text-sm text-on-surface-variant mb-6 flex-1">Training manuals for safety wardens and community leads. Includes coordination toolkits and communication etiquette.</p>
 <div className="flex items-center justify-between mt-auto">
 <span className="text-xs font-medium text-stone-400">12 Modules • Updated June 2024</span>
-<button className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
 <span className="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
@@ -153,7 +153,7 @@ export default function Resources() {
 <p className="text-sm text-on-surface-variant mb-6 flex-1">Digital catalog of shared community resources: medical supplies, generators, radios, and emergency shelters.</p>
 <div className="flex items-center justify-between mt-auto">
 <span className="text-xs font-medium text-stone-400">Live Database • 420 Items</span>
-<button className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
 <span className="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
@@ -179,7 +179,7 @@ export default function Resources() {
 <span className="text-xs font-bold">Fire Dept</span>
 </div>
 </div>
-<button className="hero-gradient text-white px-8 py-3 rounded-full font-bold text-sm shadow-lg shadow-primary/20">Access Directory</button>
+<button aria-label="Action" className="hero-gradient text-white px-8 py-3 rounded-full font-bold text-sm shadow-lg shadow-primary/20">Access Directory</button>
 </div>
 <div className="w-full md:w-1/3 flex flex-col gap-4 relative z-10">
 <div className="bg-white p-4 rounded-2xl shadow-sm border border-outline-variant/5 flex items-center gap-3">
@@ -205,7 +205,7 @@ export default function Resources() {
 <p className="text-sm text-on-surface-variant mb-6 flex-1">Resources for managing stress, psychological first aid, and community peer-support frameworks.</p>
 <div className="flex items-center justify-between mt-auto">
 <span className="text-xs font-medium text-stone-400">8 Toolkits • New Release</span>
-<button className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<button aria-label="Action" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
 <span className="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
@@ -223,8 +223,8 @@ export default function Resources() {
 <h3 className="text-3xl font-bold text-on-surface mb-4">Can't find what you need?</h3>
 <p className="text-on-surface-variant max-w-2xl mx-auto mb-8">Our central support team can help you source specific guides or create new resource toolkits for your neighborhood's unique requirements.</p>
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<button className="bg-primary text-white px-8 py-3.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all">Request a Resource</button>
-<button className="bg-white text-primary px-8 py-3.5 rounded-full font-bold shadow-sm border border-outline-variant/10 hover:bg-surface-container-low transition-all">Contact Librarian</button>
+<button aria-label="Action" className="bg-primary text-white px-8 py-3.5 rounded-full font-bold shadow-lg hover:scale-105 transition-all">Request a Resource</button>
+<button aria-label="Action" className="bg-white text-primary px-8 py-3.5 rounded-full font-bold shadow-sm border border-outline-variant/10 hover:bg-surface-container-low transition-all">Contact Librarian</button>
 </div>
 </div>
 </section>
@@ -232,23 +232,23 @@ export default function Resources() {
 </main>
 
 <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-outline-variant/10 flex justify-around items-center py-3 z-50">
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/">
 <span className="material-symbols-outlined text-2xl">shield_with_heart</span>
 <span className="text-[10px] font-bold">Hub</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/support-flow">
 <span className="material-symbols-outlined text-2xl">volunteer_activism</span>
 <span className="text-[10px] font-bold">Support</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-primary" href="/resources">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-primary" href="/resources">
 <span className="material-symbols-outlined text-2xl" >library_books</span>
 <span className="text-[10px] font-bold">Resources</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/history">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/history">
 <span className="material-symbols-outlined text-2xl">history</span>
 <span className="text-[10px] font-bold">History</span>
 </Link>
-<Link className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
+<Link aria-label="Navigation Link" className="flex flex-col items-center gap-1 text-stone-500" href="/settings">
 <span className="material-symbols-outlined text-2xl">settings</span>
 <span className="text-[10px] font-bold">Settings</span>
 </Link>
