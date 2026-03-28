@@ -20,7 +20,7 @@ func TestUploadToStorage(t *testing.T) {
 
 func TestGeocodeLocation(t *testing.T) {
 	ctx := context.Background()
-	
+
 	// Test unknown
 	coords, err := GeocodeLocation(ctx, "Unknown Location")
 	if err != nil {

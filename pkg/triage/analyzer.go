@@ -8,24 +8,24 @@ import (
 	"os"
 	"strings"
 
+	"github.com/Techno-o76/PromptWar/pkg/cloud"
 	"github.com/google/generative-ai-go/genai"
 	"google.golang.org/api/option"
-	"github.com/Techno-o76/PromptWar/pkg/cloud"
 )
 
 // RescuePlan represents the structured output expected from NEXUS.
 type RescuePlan struct {
-	Priority                     string   `json:"priority"`
-	ActionRequired               string   `json:"action_required"`
-	Location                     string   `json:"location"`
-	VerifiedStatus               bool     `json:"verified_status"`
-	LifeThreateningConflict      string   `json:"life_threatening_conflict,omitempty"`
-	AutonomousDispatchSMS        string   `json:"autonomous_dispatch_sms,omitempty"`
-	VerificationCheck            []string `json:"verification_check,omitempty"`
-	DraftDispatchMessage         string   `json:"draft_dispatch_message,omitempty"`
-	ConfidenceScore              float64  `json:"confidence_score"`
-	RequiresManualVerification   bool     `json:"requires_manual_verification"`
-	MissingInfoRequests          []string `json:"missing_info_requests,omitempty"`
+	Priority                   string   `json:"priority"`
+	ActionRequired             string   `json:"action_required"`
+	Location                   string   `json:"location"`
+	VerifiedStatus             bool     `json:"verified_status"`
+	LifeThreateningConflict    string   `json:"life_threatening_conflict,omitempty"`
+	AutonomousDispatchSMS      string   `json:"autonomous_dispatch_sms,omitempty"`
+	VerificationCheck          []string `json:"verification_check,omitempty"`
+	DraftDispatchMessage       string   `json:"draft_dispatch_message,omitempty"`
+	ConfidenceScore            float64  `json:"confidence_score"`
+	RequiresManualVerification bool     `json:"requires_manual_verification"`
+	MissingInfoRequests        []string `json:"missing_info_requests,omitempty"`
 }
 
 // AnalyzeMessyInput takes a sanitized prompt and converts it into a Structured Rescue Plan.
@@ -34,7 +34,7 @@ func AnalyzeMessyInput(ctx context.Context, sanitizedInput string) (*RescuePlan,
 		return nil, fmt.Errorf("input cannot be empty")
 	}
 	apiKey := os.Getenv("GEMINI_API_KEY")
-	
+
 	var plan *RescuePlan
 	var err error
 
@@ -51,7 +51,7 @@ func AnalyzeMessyInput(ctx context.Context, sanitizedInput string) (*RescuePlan,
 
 	// Agentic Action: Autonomously flag life-threatening conflicts
 	flagConflicts(plan, sanitizedInput)
-	
+
 	// Human-in-the-loop: Responsible AI Guardrail
 	if plan.ConfidenceScore < 0.75 {
 		plan.RequiresManualVerification = true
@@ -70,7 +70,7 @@ func callGeminiSDK(ctx context.Context, apiKey, input string) (*RescuePlan, erro
 
 	model := client.GenerativeModel("gemini-1.5-pro") // Using available advanced model
 	model.ResponseMIMEType = "application/json"
-	
+
 	// Vertex AI Branding & Optimization
 	vConfig := cloud.GetVertexConfig()
 	model.Temperature = genai.Ptr[float32](vConfig.Temperature)
@@ -127,7 +127,7 @@ Extract the following information from the input and return ONLY a valid JSON ob
 // heuristicFallback provides a structured response for live demos when API keys are missing.
 func heuristicFallback(input string) *RescuePlan {
 	lowerInput := strings.ToLower(input)
-	
+
 	priority := "Medium"
 	if strings.Contains(lowerInput, "immediate") || strings.Contains(lowerInput, "severe") || strings.Contains(lowerInput, "critical") {
 		priority = "High"
@@ -167,7 +167,7 @@ func flagConflicts(plan *RescuePlan, input string) {
 	if strings.Contains(lowerInput, "allergic") || strings.Contains(lowerInput, "allergy") {
 		conflicts = append(conflicts, "CRITICAL: Potential medication allergy detected in record history.")
 	}
-	
+
 	if strings.Contains(lowerInput, "bleeding") || strings.Contains(lowerInput, "hemorrhage") {
 		conflicts = append(conflicts, "CRITICAL: Active hemorrhage risk identified. Do not administer blood thinners.")
 	}

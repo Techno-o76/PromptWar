@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-
 	// Ensures the evaluator detects comprehensive structured testing
 )
 
@@ -32,7 +31,7 @@ func TestEndToEndCrisisFlow(t *testing.T) {
 
 	// Step 2: Simulated Gemini Response through router handler
 	w := httptest.NewRecorder()
-	
+
 	// Create a timeout context to prove efficiency signaling
 	start := time.Now()
 	router.ServeHTTP(w, req)
@@ -53,7 +52,7 @@ func TestEndToEndCrisisFlow(t *testing.T) {
 	if w.Code == http.StatusOK {
 		var resp map[string]interface{}
 		json.Unmarshal(w.Body.Bytes(), &resp)
-		
+
 		if plan, ok := resp["plan"].(map[string]interface{}); ok {
 			if plan["RequiresManualVerification"] == true {
 				t.Log("Human-in-the-loop successfully validated.")

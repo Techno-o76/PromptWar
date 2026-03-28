@@ -51,14 +51,14 @@ func TestAnalyzerFlagsConflicts(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			plan, err := AnalyzeMessyInput(ctx, tt.input)
-			
+
 			if tt.expectError {
 				if err == nil {
 					t.Errorf("Expected an error for %s, but got none", tt.name)
 				}
 				return
 			}
-			
+
 			if err != nil {
 				t.Fatalf("AnalyzeMessyInput failed for %s: %v", tt.name, err)
 			}
@@ -79,7 +79,7 @@ func TestAnalyzerFlagsConflicts(t *testing.T) {
 func TestAnalyzeMultimodalInputFallback(t *testing.T) {
 	ctx := context.Background()
 	intent := "Patient is allergic to penicillin."
-	
+
 	plan, err := AnalyzeMultimodalInput(ctx, "image/jpeg", []byte("dummydata"), intent, false)
 	if err != nil {
 		t.Fatalf("AnalyzeMultimodalInput failed: %v", err)
@@ -91,35 +91,33 @@ func TestAnalyzeMultimodalInputFallback(t *testing.T) {
 }
 
 func TestCallGeminiSDKInvalidKey(t *testing.T) {
-    ctx := context.Background()
-    _, err := callGeminiSDK(ctx, "invalid_key", "test")
-    if err == nil {
-        t.Errorf("Expected error with invalid API key")
-    }
+	ctx := context.Background()
+	_, err := callGeminiSDK(ctx, "invalid_key", "test")
+	if err == nil {
+		t.Errorf("Expected error with invalid API key")
+	}
 }
 
-
-
 func TestAnalyzeMessyInputWithKey(t *testing.T) {
-    os.Setenv("GEMINI_API_KEY", "invalid_key")
-    defer os.Unsetenv("GEMINI_API_KEY")
-    // It should fallback to heuristic since key is invalid/fails
-    plan, err := AnalyzeMessyInput(context.Background(), "Emergency sector 7")
-    if err != nil {
-        t.Errorf("Expected fallback to succeed, got error: %v", err)
-    }
-    if plan.Location != "Sector 7" {
-        t.Errorf("Expected Sector 7")
-    }
+	os.Setenv("GEMINI_API_KEY", "invalid_key")
+	defer os.Unsetenv("GEMINI_API_KEY")
+	// It should fallback to heuristic since key is invalid/fails
+	plan, err := AnalyzeMessyInput(context.Background(), "Emergency sector 7")
+	if err != nil {
+		t.Errorf("Expected fallback to succeed, got error: %v", err)
+	}
+	if plan.Location != "Sector 7" {
+		t.Errorf("Expected Sector 7")
+	}
 }
 
 func TestAnalyzeMultimodalInputNoKey(t *testing.T) {
-    os.Setenv("GEMINI_API_KEY", "")
-    plan, err := AnalyzeMultimodalInput(context.Background(), "text/plain", []byte("test"), "some intent", false)
-    if err != nil {
-        t.Errorf("Expected fallback to succeed, got %v", err)
-    }
-    if !strings.Contains(plan.ActionRequired, "Evaluate patient") {
-        t.Errorf("Expected heuristic fallback outcome")
-    }
+	os.Setenv("GEMINI_API_KEY", "")
+	plan, err := AnalyzeMultimodalInput(context.Background(), "text/plain", []byte("test"), "some intent", false)
+	if err != nil {
+		t.Errorf("Expected fallback to succeed, got %v", err)
+	}
+	if !strings.Contains(plan.ActionRequired, "Evaluate patient") {
+		t.Errorf("Expected heuristic fallback outcome")
+	}
 }

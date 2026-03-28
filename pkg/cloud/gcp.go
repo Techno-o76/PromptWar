@@ -64,7 +64,7 @@ func LogStructuredEntry(priority, message string) {
 // For the Live Demo hackathon scope, it mocks the upload and returns a public URL.
 func UploadToStorage(ctx context.Context, bucketName, filename string, data []byte) (string, error) {
 	LogStructuredEntry("INFO", fmt.Sprintf("Uploading %s to GCS bucket %s (%d bytes)", filename, bucketName, len(data)))
-	
+
 	// Mock URL return
 	return fmt.Sprintf("https://storage.googleapis.com/%s/live-demo/%s", bucketName, filename), nil
 }
@@ -72,7 +72,7 @@ func UploadToStorage(ctx context.Context, bucketName, filename string, data []by
 // GeocodeLocation uses Google Maps API to convert a raw location string into Coordinates.
 func GeocodeLocation(ctx context.Context, address string) (string, error) {
 	LogStructuredEntry("INFO", "Geocoding location via Maps API: "+address)
-	
+
 	// If the address already looks like coordinates (e.g., from Live User Location), just return it
 	if strings.Contains(address, ",") && len(address) < 40 {
 		return address, nil

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"time"
 
@@ -75,7 +76,7 @@ func HandleGoogleLogin(c *gin.Context) {
 func HandlePromptDefense(c *gin.Context) {
 	// Security: Validated input via JSON binding
 	var request struct {
-		Prompt string `json:"prompt" binding:"required"`
+		Prompt   string `json:"prompt" binding:"required"`
 		Vertical string `json:"vertical" binding:"required"`
 	}
 
@@ -88,7 +89,7 @@ func HandlePromptDefense(c *gin.Context) {
 	hardenedPrompt := defense.RedTeamHardening(request.Prompt, request.Vertical)
 
 	c.JSON(http.StatusOK, gin.H{
-		"status": "hardened",
+		"status":   "hardened",
 		"original": request.Prompt,
 		"hardened": hardenedPrompt,
 		"vertical": request.Vertical,
@@ -110,33 +111,42 @@ func HandleTriage(c *gin.Context) {
 	// Apply Zero-Day Defense Logic first for the 'Crisis Intelligence' vertical.
 	hardenedPrompt := defense.RedTeamHardening(request.Prompt, "Crisis Intelligence")
 
+	// Efficiency: Establish a bounded timeout for inference to prevent hung threads
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 10*time.Second)
+	defer cancel()
+
 	// Pass to the triage service to generate the structured JSON schema.
-	plan, err := triage.AnalyzeMessyInput(c.Request.Context(), hardenedPrompt)
+	plan, err := triage.AnalyzeMessyInput(ctx, hardenedPrompt)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Triage analysis failed: " + err.Error()})
 		return
 	}
 
 	// Utilize Google Maps API to enrich spatial data
-	coords, _ := cloud.GeocodeLocation(c.Request.Context(), plan.Location)
+	coords, _ := cloud.GeocodeLocation(ctx, plan.Location)
 	plan.Location = fmt.Sprintf("%s (Coordinates: %s)", plan.Location, coords)
 
-	// Send Firebase Push Notification for urgent crises
+	// Efficiency: Send Firebase Push Notification asynchronously to avoid blocking response
 	if plan.Priority == "High" || plan.Priority == "CRITICAL HIGH" {
-		_ = cloud.SendFirebaseAlert(c.Request.Context(), "nexus-alerts", plan.AutonomousDispatchSMS)
+		go func() {
+			if err := cloud.SendFirebaseAlert(context.Background(), "nexus-alerts", plan.AutonomousDispatchSMS); err != nil {
+				log.Printf("[Async Firebase] Alert failed: %v", err)
+			}
+		}()
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
+		"status":          "success",
 		"hardened_prompt": hardenedPrompt,
-		"plan": plan,
+		"plan":            plan,
 	})
 }
 
 // HandleDataIngestion processes multimodal file uploads and intent.
 func HandleDataIngestion(c *gin.Context) {
 	// Security: Validated input via MultipartForm
-	err := c.Request.ParseMultipartForm(500 << 20) // 500 MB limit
+	// Efficiency: Limit upload size to 10MB for crisis photos/audio
+	err := c.Request.ParseMultipartForm(10 << 20) // 10 MB limit
 	if err != nil {
 		logGCP("ERROR", "DataIngestion", "Failed to parse multipart form")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to parse multipart form"})
@@ -144,7 +154,7 @@ func HandleDataIngestion(c *gin.Context) {
 	}
 
 	intent := c.PostForm("intent")
-	
+
 	file, header, err := c.Request.FormFile("file")
 	if err != nil {
 		logGCP("WARNING", "DataIngestion", "File is required but not provided")
@@ -190,15 +200,19 @@ func HandleDataIngestion(c *gin.Context) {
 	coords, _ := cloud.GeocodeLocation(ctx, plan.Location)
 	plan.Location = fmt.Sprintf("%s (Coordinates: %s)", plan.Location, coords)
 
-	// Send Firebase Push Notification for urgent crises
+	// Efficiency: Send Firebase Push Notification asynchronously to avoid blocking response
 	if plan.Priority == "High" || plan.Priority == "CRITICAL HIGH" {
-		_ = cloud.SendFirebaseAlert(ctx, "nexus-alerts", plan.AutonomousDispatchSMS)
+		go func() {
+			if err := cloud.SendFirebaseAlert(context.Background(), "nexus-alerts", plan.AutonomousDispatchSMS); err != nil {
+				log.Printf("[Async Firebase] Alert failed: %v", err)
+			}
+		}()
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"status": "success",
+		"status":          "success",
 		"hardened_intent": hardenedIntent,
-		"plan": plan,
-		"gcs_url": fileUrl,
+		"plan":            plan,
+		"gcs_url":         fileUrl,
 	})
 }
