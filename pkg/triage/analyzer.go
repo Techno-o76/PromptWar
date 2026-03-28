@@ -26,6 +26,9 @@ type RescuePlan struct {
 
 // AnalyzeMessyInput takes a sanitized prompt and converts it into a Structured Rescue Plan.
 func AnalyzeMessyInput(ctx context.Context, sanitizedInput string) (*RescuePlan, error) {
+	if strings.TrimSpace(sanitizedInput) == "" {
+		return nil, fmt.Errorf("input cannot be empty")
+	}
 	apiKey := os.Getenv("GEMINI_API_KEY")
 	
 	var plan *RescuePlan

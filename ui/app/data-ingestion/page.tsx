@@ -5,12 +5,47 @@ import { useRef, useState } from 'react';
 
 export default function DataIngestion() {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [intent, setIntent] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
   const [simulateContext, setSimulateContext] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+
+  const startVoiceRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+          const audioFile = new File([e.data], "voice_memo.webm", { type: "audio/webm" });
+          setSelectedFile(audioFile);
+          setIntent((prev) => prev ? prev + " (Attached Voice Memo)" : "Voice Memo Attached");
+        }
+      };
+      recorder.start();
+      setMediaRecorder(recorder);
+      setIsRecording(true);
+    } catch (err) {
+      alert("Microphone permission denied or not supported.");
+    }
+  };
+
+  const stopVoiceRecording = () => {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      mediaRecorder.stream.getTracks().forEach(t => t.stop());
+      setMediaRecorder(null);
+      setIsRecording(false);
+    }
+  };
+
+  const triggerCamera = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    cameraInputRef.current?.click();
+  };
 
   const handleUpload = async () => {
     if (!selectedFile) return;
@@ -150,9 +185,16 @@ export default function DataIngestion() {
   onClick={triggerFileInput}
 >
 <input aria-label="Input field" 
-  aria-label="Upload Target File"
   type="file" 
   ref={fileInputRef} 
+  className="hidden" 
+  onChange={handleFileChange} 
+/>
+<input aria-label="Camera field" 
+  type="file"
+  accept="image/*"
+  capture="environment"
+  ref={cameraInputRef} 
   className="hidden" 
   onChange={handleFileChange} 
 />
@@ -169,7 +211,7 @@ export default function DataIngestion() {
 <div className="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center text-orange-700 transform rotate-6 hover:rotate-0 transition-transform cursor-pointer shadow-sm">
 <span className="material-symbols-outlined text-3xl">newspaper</span>
 </div>
-<div className="w-16 h-16 rounded-2xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer shadow-sm">
+<div onClick={triggerCamera} className="w-16 h-16 rounded-2xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container transform -rotate-2 hover:rotate-0 transition-transform cursor-pointer shadow-sm ring-2 ring-tertiary-container ring-offset-2">
 <span className="material-symbols-outlined text-3xl">photo_camera</span>
 </div>
 </div>
@@ -195,36 +237,14 @@ export default function DataIngestion() {
   <div className="space-y-6">
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label className="block text-sm font-bold text-on-surface">Human Intent (Optional Context)</label>
-        <button aria-label="Record Voice Intent"
-          onClick={() => {
-            // @ts-ignore
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-              alert("Speech Recognition not supported in this browser.");
-              return;
-            }
-            const recognition = new SpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            recognition.lang = 'en-US';
-
-            recognition.onstart = () => setIsRecording(true);
-            recognition.onresult = (event: any) => {
-              const transcript = event.results[0][0].transcript;
-              setIntent((prev) => prev ? prev + " " + transcript : transcript);
-              setIsRecording(false);
-            };
-            recognition.onerror = () => setIsRecording(false);
-            recognition.onend = () => setIsRecording(false);
-            
-            recognition.start();
-          }}
-          className={`flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border transition-all ${isRecording ? 'bg-error text-white border-error animate-pulse' : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}
-        >
-          <span className="material-symbols-outlined text-[14px]">mic</span>
-          {isRecording ? "Recording..." : "Voice Intent"}
-        </button>
+          <label className="block text-sm font-bold text-on-surface">Human Intent (Optional Context)</label>
+          <button aria-label="Record Voice Intent"
+            onClick={isRecording ? stopVoiceRecording : startVoiceRecording}
+            className={`flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border transition-all ${isRecording ? 'bg-error text-white border-error animate-pulse shadow-[0_0_15px_rgba(220,38,38,0.5)]' : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-container'}`}
+          >
+            <span className="material-symbols-outlined text-[14px]">{isRecording ? "stop_circle" : "mic"}</span>
+            {isRecording ? "Stop Recording (Saving to file)..." : "Record Voice Memo"}
+          </button>
       </div>
       <textarea aria-label="Text Intent Input Area"
         value={intent}
