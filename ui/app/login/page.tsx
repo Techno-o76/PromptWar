@@ -95,7 +95,7 @@ export default function SafetyGuardianLogin() {
                   <label className="block font-['Plus_Jakarta_Sans'] font-semibold text-sm px-1 text-[#2d2f2c]">Email address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
-                    <input aria-label="Input field" 
+                    <input 
                       type="email" 
                       id="email"
                       name="email"
@@ -116,7 +116,7 @@ export default function SafetyGuardianLogin() {
                   </div>
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#adada9]" />
-                    <input aria-label="Input field" 
+                    <input 
                       type="password" 
                       id="password"
                       name="password"
